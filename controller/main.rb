@@ -11,10 +11,14 @@ class MainController < Ramaze::Controller
   def login
     if request.post?
       user_login
+      if logged_in?
+        redirect Rs( :/ )
+      end
     end
   end
 
   def logout
     user_logout
+    redirect Rs( :/ )
   end
 end

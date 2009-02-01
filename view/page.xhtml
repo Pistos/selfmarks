@@ -10,6 +10,18 @@
 
 <h2>SelfMarks</h2>
 
+<?r if logged_in? ?>
+Logged in as #{user.username}
+<?r else ?>
+Not logged in.
+<?r end ?>
+
+<div id="menu-main">
+#{A( 'Home', :href => Rs( :/ ) )} |
+#{A( 'Login', :href => Rs( :login ) )} |
+#{A( 'Logout', :href => Rs( :logout ) )}
+</div>
+
 #{@content}
 
 </body>

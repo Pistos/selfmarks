@@ -16,7 +16,7 @@ class BookmarkController < Ramaze::Controller
         h( request[ 'notes' ] )
       )
 
-      tags.each do |tag|
+      requested_tags.each do |tag|
         t = Tag.find_or_create( :name => h( tag ) )
         bm.tag_add t
       end
@@ -29,7 +29,7 @@ class BookmarkController < Ramaze::Controller
   def search
     @bookmarks = Set.new
     @tags = Set.new
-    tags.each do |tagname|
+    requested_tags.each do |tagname|
       tag = Tag[ :name => tagname ]
       if tag
         @tags << tag
@@ -40,7 +40,7 @@ class BookmarkController < Ramaze::Controller
     end
   end
 
-  def tags
+  def requested_tags
     tags_in = request[ 'tags' ]
     if tags_in && tags_in.any?
       tags_in.split /[\s,+]+/
@@ -48,5 +48,5 @@ class BookmarkController < Ramaze::Controller
       []
     end
   end
-  private :tags
+  private :requested_tags
 end

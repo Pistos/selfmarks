@@ -1,21 +1,6 @@
 BookmarkStruct = Struct.new( :id, :uri, :uri_editable, :title, :tags, :notes )
 
 class Bookmark < DBI::Model( :bookmarks )
-  def tag_add( tag, user )
-    $dbh.i(
-      %{
-        INSERT INTO users_bookmarks_tags (
-          bookmark_id, tag_id, user_id
-        ) VALUES (
-          ?, ?, ?
-        )
-      },
-      self.id,
-      tag.id,
-      user.id
-    )
-  end
-
   def title( user )
     $dbh.sc(
       %{
@@ -25,6 +10,21 @@ class Bookmark < DBI::Model( :bookmarks )
           user_id = ?
           AND bookmark_id = ?
       },
+      user.id,
+      self.id
+    )
+  end
+
+  def set_title( user, title )
+    $dbh.u(
+      %{
+        UPDATE users_bookmarks
+        SET title = ?
+        WHERE
+          user_id = ?
+          AND bookmark_id = ?
+      },
+      title,
       user.id,
       self.id
     )
@@ -89,6 +89,21 @@ class Bookmark < DBI::Model( :bookmarks )
           user_id = ?
           AND bookmark_id = ?
       },
+      user.id,
+      self.id
+    )
+  end
+
+  def set_notes( user, notes )
+    $dbh.u(
+      %{
+        UPDATE users_bookmarks
+        SET notes = ?
+        WHERE
+          user_id = ?
+          AND bookmark_id = ?
+      },
+      notes,
       user.id,
       self.id
     )

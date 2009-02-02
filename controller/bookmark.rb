@@ -41,6 +41,14 @@ class BookmarkController < Ramaze::Controller
     if bm.nil?
       redirect Rs( :add )
     end
+
+    if request.post?
+      bm.set_title( user, h( request[ 'title' ] ) )
+      bm.set_notes( user, h( request[ 'notes' ] ) )
+      bm.tags_ensure( requested_tags, user )
+      flash[ :success ] = "Updated #{bm.uri}."
+    end
+
     @bookmark = bm.to_struct( user )
   end
 

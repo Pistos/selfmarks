@@ -2,26 +2,25 @@
 
 <head>
 
-<title>#{@page_title} - SelfMarks</title>
+  <title>#{@page_title} - SelfMarks</title>
 
 </head>
 
 <body>
 
-<h2>SelfMarks</h2>
+  <h2>SelfMarks</h2>
 
+  <div id="menu-main">
+  #{A( 'Home', :href => Rs( :/ ) )} |
+  <?r if logged_in? ?>
+  Logged in as #{user.username} |
+  #{A( 'Logout', :href => Rs( :logout ) )}
+  <?r else ?>
+  #{A( 'Login', :href => Rs( :login ) )}
+  <?r end ?>
+  </div>
 
-<div id="menu-main">
-#{A( 'Home', :href => Rs( :/ ) )} |
-<?r if logged_in? ?>
-Logged in as #{user.username} |
-#{A( 'Logout', :href => Rs( :logout ) )}
-<?r else ?>
-#{A( 'Login', :href => Rs( :login ) )}
-<?r end ?>
-</div>
-
-#{@content}
+  #{@content}
 
 </body>
 

@@ -2,6 +2,8 @@
 
 # Input format is delicious.com export format (HTML).
 
+$KCODE = 'UTF8'
+
 username = nil
 filename = nil
 
@@ -58,7 +60,7 @@ end
 links.each do |dt|
   a = dt.at( 'a' )
   dd = dt.next_sibling
-  if dd.xpath !~ %r{^/dl/dd}
+  if dd && dd.xpath !~ %r{^/dl/dd}
     dd = nil
   end
 
@@ -71,7 +73,7 @@ links.each do |dt|
     dd ? dd.inner_text : nil
   )
 
-  bm.tags_ensure( a[ 'tags' ].split( /,/ ), user )
+  bm.tags_ensure( a[ 'tags' ].split( /,/u ), user )
 
   count += 1
   if count % 100 == 0

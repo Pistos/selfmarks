@@ -1,8 +1,15 @@
   <form method="POST">
+    <input type="hidden" name="id" value="#{@bookmark.id}"/>
     <table>
       <tr>
         <td>URI:</td>
-        <td><input type="text" name="uri" value="#{@bookmark.uri}" size="80"/></td>
+        <td>
+          <?r if @bookmark.uri_editable ?>
+          <input type="text" name="uri" value="#{@bookmark.uri}" size="80"/>
+          <?r else ?>
+          #{@bookmark.uri}
+          <?r end ?>
+        </td>
       </tr>
       <tr>
         <td>Title:</td>

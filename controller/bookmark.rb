@@ -30,6 +30,7 @@ class BookmarkController < Ramaze::Controller
     else
       @bookmark = BookmarkStruct.new
       @bookmark.uri = uri
+      @bookmark.uri_editable = true
       @bookmark.title = h( request[ 'title' ] )
     end
   end

@@ -21,10 +21,7 @@ class BookmarkController < Ramaze::Controller
         h( request[ 'notes' ] )
       )
 
-      requested_tags.each do |tag|
-        t = Tag.find_or_create( :name => h( tag ) )
-        bm.tag_add t, user
-      end
+      bm.tags_ensure( requested_tags, user )
 
       redirect Rs( :edit, bm.id )
     else

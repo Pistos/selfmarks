@@ -48,6 +48,38 @@ class Bookmark < DBI::Model( :bookmarks )
     )
   end
 
+  def tag_ensure( tag, user )
+    $dbh.i(
+      %{
+        INSERT INTO users_bookmarks_tags (
+          bookmark_id, tag_id, user_id
+        ) SELECT
+          ?, ?, ?
+        WHERE NOT EXISTS(
+          SELECT 1
+          FROM users_bookmarks_tags
+          WHERE
+            bookmark_id = ?
+            AND tag_id = ?
+            AND user_id = ?
+        )
+      },
+      self.id,
+      tag.id,
+      user.id,
+      self.id,
+      tag.id,
+      user.id
+    )
+  end
+
+  def tags_ensure( tags, user )
+    tags.each do |tag|
+      t = Tag.find_or_create( :name => tag )
+      tag_ensure t, user
+    end
+  end
+
   def notes( user )
     $dbh.sc(
       %{

@@ -4,7 +4,7 @@ class BookmarkController < Ramaze::Controller
   map '/uri'
   helper :stack, :user
 
-  layout '/page' => [ :add, :edit ]
+  layout '/page' => [ :add, :edit, :search ]
 
   def add
     if ! logged_in?

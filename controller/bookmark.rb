@@ -1,7 +1,5 @@
 require 'set'
 
-BookmarkStruct = Struct.new( :uri, :title, :tags, :notes )
-
 class BookmarkController < Ramaze::Controller
   map '/uri'
   helper :stack, :user

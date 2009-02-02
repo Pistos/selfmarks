@@ -1,3 +1,5 @@
+BookmarkStruct = Struct.new( :uri, :title, :tags, :notes )
+
 class Bookmark < DBI::Model( :bookmarks )
   def tag_add( tag, user )
     $dbh.i(
@@ -58,5 +60,14 @@ class Bookmark < DBI::Model( :bookmarks )
       user.id,
       self.id
     )
+  end
+
+  def to_struct( user )
+    struct = BookmarkStruct.new
+    struct.uri = uri
+    struct.title = title( user )
+    struct.tags = tags( user ).join( ' ' )
+    struct.notes = notes( user )
+    struct
   end
 end

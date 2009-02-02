@@ -4,17 +4,16 @@ class BookmarkController < Ramaze::Controller
   map '/uri'
   helper :stack, :user
 
-  layout '/page' => [ :add ]
+  layout '/page' => [ :add, :edit ]
 
   def add
     if ! logged_in?
       call R( MainController, :login )
     end
 
-    @bookmark = BookmarkStruct.new
-
+    uri = h( request[ 'uri' ] )
     if request.post?
-      bm = Bookmark.find_or_create( :uri => h( request[ 'uri' ] ) )
+      bm = Bookmark.find_or_create( :uri => uri )
 
       user.bookmark_add(
         bm,
@@ -27,12 +26,10 @@ class BookmarkController < Ramaze::Controller
         bm.tag_add t, user
       end
 
-      @bookmark.uri = bm.uri
-      @bookmark.title = bm.title( user )
-      @bookmark.tags = bm.tags( user )
-      @bookmark.notes = bm.notes( user )
+      redirect Rs( :edit, :uri => uri )
     else
-      @bookmark.uri = h( request[ 'uri' ] )
+      @bookmark = BookmarkStruct.new
+      @bookmark.uri = uri
       @bookmark.title = h( request[ 'title' ] )
     end
   end
@@ -41,6 +38,12 @@ class BookmarkController < Ramaze::Controller
     if ! logged_in?
       call R( MainController, :login )
     end
+
+    bm = Bookmark[ :uri => h( request[ 'uri' ] ) ]
+    if bm.nil?
+      redirect Rs( :add )
+    end
+    @bookmark = bm.to_struct( user )
   end
 
   def search

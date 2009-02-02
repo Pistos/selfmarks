@@ -16,16 +16,24 @@ class User < DBI::Model( :users )
     end
   end
 
-  def bookmark_add( bookmark, title, notes )
+  def bookmark_ensure( bookmark, title, notes )
     $dbh.i(
       %{
         INSERT INTO users_bookmarks (
           user_id, bookmark_id, title, notes
-        ) VALUES (
+        ) SELECT
           ?, ?, ?, ?
+        WHERE NOT EXISTS(
+          SELECT 1
+          FROM users_bookmarks
+          WHERE
+            user_id = ?
+            AND bookmark_id = ?
+          LIMIT 1
         )
       },
-      self.id, bookmark.id, title, notes
+      self.id, bookmark.id, title, notes,
+      self.id, bookmark.id
     )
   end
 end

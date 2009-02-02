@@ -15,7 +15,7 @@ class BookmarkController < Ramaze::Controller
     if request.post?
       bm = Bookmark.find_or_create( :uri => uri )
 
-      user.bookmark_add(
+      user.bookmark_ensure(
         bm,
         h( request[ 'title' ] ),
         h( request[ 'notes' ] )

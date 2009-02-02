@@ -19,11 +19,13 @@ CREATE TABLE bookmarks (
 CREATE TABLE users_bookmarks (
     user_id      INTEGER         NOT NULL REFERENCES users( id ),
     bookmark_id  INTEGER         NOT NULL REFERENCES bookmarks( id ),
-    notes        VARCHAR( 4096 )
+    notes        VARCHAR( 4096 ),
+    UNIQUE( user_id, bookmark_id )
 );
 
-CREATE TABLE bookmark_tags (
+CREATE TABLE bookmarks_tags (
     bookmark_id  INTEGER         NOT NULL REFERENCES bookmarks( id ),
-    tag_id       INTEGER         NOT NULL REFERENCES tags( id )
+    tag_id       INTEGER         NOT NULL REFERENCES tags( id ),
+    UNIQUE( bookmark_id, tag_id )
 );
 

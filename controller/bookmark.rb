@@ -1,5 +1,7 @@
 require 'set'
 
+BookmarkStruct = Struct.new( :uri, :title, :tags, :notes )
+
 class BookmarkController < Ramaze::Controller
   map '/uri'
   helper :stack, :user
@@ -10,6 +12,8 @@ class BookmarkController < Ramaze::Controller
     if ! logged_in?
       call R( MainController, :login )
     end
+
+    @bookmark = BookmarkStruct.new
 
     if request.post?
       bm = Bookmark.find_or_create( :uri => h( request[ 'uri' ] ) )
@@ -24,10 +28,21 @@ class BookmarkController < Ramaze::Controller
         t = Tag.find_or_create( :name => h( tag ) )
         bm.tag_add t, user
       end
-    end
 
-    @uri = h( request[ 'uri' ] )
-    @title = h( request[ 'title' ] )
+      @bookmark.uri = bm.uri
+      @bookmark.title = bm.title( user )
+      @bookmark.tags = bm.tags( user )
+      @bookmark.notes = bm.notes( user )
+    else
+      @bookmark.uri = h( request[ 'uri' ] )
+      @bookmark.title = h( request[ 'title' ] )
+    end
+  end
+
+  def edit
+    if ! logged_in?
+      call R( MainController, :login )
+    end
   end
 
   def search

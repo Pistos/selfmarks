@@ -2,19 +2,19 @@
     <table>
       <tr>
         <td>URI:</td>
-        <td><input type="text" name="uri" value="#{@uri}" size="80"/></td>
+        <td><input type="text" name="uri" value="#{@bookmark.uri}" size="80"/></td>
       </tr>
       <tr>
         <td>Title:</td>
-        <td><input type="text" name="title" value="#{@title}" size="80"/></td>
+        <td><input type="text" name="title" value="#{@bookmark.title}" size="80"/></td>
       </tr>
       <tr>
         <td>Tags:</td>
-        <td><input type="text" name="tags" size="80"/></td>
+        <td><input type="text" name="tags" value="#{@bookmark.tags}" size="80"/></td>
       </tr>
       <tr>
         <td>Notes:</td>
-        <td><textarea name="notes" rows="6" cols="80"></textarea></td>
+        <td><textarea name="notes" rows="6" cols="80">#{@bookmark.notes}</textarea></td>
       </tr>
       <tr>
         <td></td>

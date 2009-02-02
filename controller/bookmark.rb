@@ -18,7 +18,7 @@ class BookmarkController < Ramaze::Controller
 
       requested_tags.each do |tag|
         t = Tag.find_or_create( :name => h( tag ) )
-        bm.tag_add t
+        bm.tag_add t, user
       end
     end
 

@@ -24,9 +24,10 @@ CREATE TABLE users_bookmarks (
     UNIQUE( user_id, bookmark_id )
 );
 
-CREATE TABLE bookmarks_tags (
+CREATE TABLE users_bookmarks_tags (
+    user_id      INTEGER         NOT NULL REFERENCES users( id ),
     bookmark_id  INTEGER         NOT NULL REFERENCES bookmarks( id ),
     tag_id       INTEGER         NOT NULL REFERENCES tags( id ),
-    UNIQUE( bookmark_id, tag_id )
+    UNIQUE( user_id, bookmark_id, tag_id )
 );
 

@@ -52,18 +52,23 @@ class BookmarkController < Ramaze::Controller
     @bookmark = bm.to_struct( user )
   end
 
-  def search
+  def search( *tags )
     @bookmarks = Set.new
-    @tags = Set.new
-    requested_tags.each do |tagname|
+    actual_tags = Set.new
+    tags_ = requested_tags
+    if tags_.empty?
+      tags_ = tags
+    end
+    tags_.each do |tagname|
       tag = Tag[ :name => tagname ]
       if tag
-        @tags << tag
+        actual_tags << tag
         tag.bookmarks.each do |bm|
           @bookmarks << bm
         end
       end
     end
+    @tags = actual_tags.to_a.join( ' ' )
   end
 
   def requested_tags

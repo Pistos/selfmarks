@@ -1,9 +1,13 @@
 <form method="POST">
-  Tags: <input type="text" name="tags"/>
+  Tags: <input type="text" name="tags" value="#{@tags}"/>
 </form>
 
-<h4>Bookmarks tagged with any of: #{@tags.to_a.join( ' ' )}</h4>
-
-<?r @bookmarks.each do |bm| ?>
-  <a href="#{bm.uri}">#{bm.title(user)}</a>
+<?r if @tags.any? ?>
+  <h4>Bookmarks tagged with any of: #{@tags}</h4>
 <?r end ?>
+
+<ul>
+<?r @bookmarks.each do |bm| ?>
+  <li><a href="#{bm.uri}">#{bm.title(user)}</a></li>
+<?r end ?>
+</ul>

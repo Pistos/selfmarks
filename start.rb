@@ -2,7 +2,7 @@ require 'rubygems'
 require 'ramaze'
 
 require 'm4dbi'
-$dbh = DBI.connect( 'DBI:Pg:selfmarks', 'selfmarks', 'selfmarks' )
+$dbh = DBI.connect( "DBI:#{SelfMarks::DB_TYPE}:#{SelfMarks::DB_DATABASE}", SelfMarks::DB_USERNAME, SelfMarks::DB_PASSWORD )
 
 require './config'
 require './models'

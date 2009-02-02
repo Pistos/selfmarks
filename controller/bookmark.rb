@@ -5,10 +5,14 @@ class BookmarkController < Ramaze::Controller
   layout '/page' => [ :add ]
 
   def add
-    if request.post?
+    if logged_in? && request.post?
       bm = Bookmark.find_or_create( :uri => h( request[ 'uri' ] ) )
 
-      user.bookmark_add( bm, h( request[ 'notes' ] ) )
+      user.bookmark_add(
+        bm,
+        h( request[ 'title' ] ),
+        h( request[ 'notes' ] )
+      )
 
       tags = request[ 'tags' ].split( /[\s,]+/ )
       tags.each do |tag|
@@ -17,6 +21,7 @@ class BookmarkController < Ramaze::Controller
       end
     end
 
-    @uri = request[ 'uri' ]
+    @uri = h( request[ 'uri' ] )
+    @title = h( request[ 'title' ] )
   end
 end

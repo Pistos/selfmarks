@@ -8,7 +8,7 @@ Bookmarklet: <a href="javascript:#{h(@bookmarklet_source)}">SelfMarks</a><br/>
 
 <?r user.bookmarks.each do |bm| ?>
   <div class="bookmark">
-    <a href="#{bm.uri}">#{bm.uri}</a>
+    <a href="#{bm.uri}">#{bm.title(user)}</a>
   </div>
 <?r end ?>
 

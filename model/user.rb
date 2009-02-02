@@ -12,16 +12,16 @@ class User < DBI::Model( :users )
     )
   end
 
-  def bookmark_add( bookmark, notes )
+  def bookmark_add( bookmark, title, notes )
     $dbh.i(
       %{
         INSERT INTO users_bookmarks (
-          user_id, bookmark_id, notes
+          user_id, bookmark_id, title, notes
         ) VALUES (
-          ?, ?, ?
+          ?, ?, ?, ?
         )
       },
-      self.id, bookmark.id, notes
+      self.id, bookmark.id, title, notes
     )
   end
 end

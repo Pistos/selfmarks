@@ -19,6 +19,7 @@ CREATE TABLE bookmarks (
 CREATE TABLE users_bookmarks (
     user_id      INTEGER         NOT NULL REFERENCES users( id ),
     bookmark_id  INTEGER         NOT NULL REFERENCES bookmarks( id ),
+    title        VARCHAR( 256 )  NOT NULL,
     notes        VARCHAR( 4096 ),
     UNIQUE( user_id, bookmark_id )
 );

@@ -11,4 +11,18 @@ class Bookmark < DBI::Model( :bookmarks )
       self.id, tag.id
     )
   end
+
+  def title( user )
+    $dbh.sc(
+      %{
+        SELECT title
+        FROM users_bookmarks
+        WHERE
+          user_id = ?
+          AND bookmark_id = ?
+      },
+      user.id,
+      self.id
+    )
+  end
 end

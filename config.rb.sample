@@ -2,5 +2,5 @@
 
 module SelfMarks
   PORT = 8011
-  HOST = "http://localhost:#{PORT}"
+  HOST = "http://sm.purepistos.net"
 end

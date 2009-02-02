@@ -12,6 +12,7 @@
 
   <div id="menu-main">
   #{A( 'Home', :href => Rs( :/ ) )} |
+  #{A( 'Bookmark', :href => R( BookmarkController, :add ) )} |
   <?r if logged_in? ?>
   Logged in as #{user.username} |
   #{A( 'Logout', :href => Rs( :logout ) )}

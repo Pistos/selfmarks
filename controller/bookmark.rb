@@ -26,7 +26,7 @@ class BookmarkController < Ramaze::Controller
         bm.tag_add t, user
       end
 
-      redirect Rs( :edit, :uri => uri )
+      redirect Rs( :edit, bm.id )
     else
       @bookmark = BookmarkStruct.new
       @bookmark.uri = uri
@@ -34,12 +34,12 @@ class BookmarkController < Ramaze::Controller
     end
   end
 
-  def edit
+  def edit( bookmark_id )
     if ! logged_in?
       call R( MainController, :login )
     end
 
-    bm = Bookmark[ :uri => h( request[ 'uri' ] ) ]
+    bm = Bookmark[ bookmark_id.to_i ]
     if bm.nil?
       redirect Rs( :add )
     end

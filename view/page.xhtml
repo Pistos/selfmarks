@@ -12,12 +12,13 @@
 
   <div id="menu-main">
   #{A( 'Home', :href => Rs( :/ ) )} |
-  #{A( 'Bookmark', :href => R( BookmarkController, :add ) )} |
-  <?r if logged_in? ?>
-  Logged in as #{user.username} |
-  #{A( 'Logout', :href => Rs( :logout ) )}
+  <?r if ! logged_in? ?>
+    #{A( 'Login', :href => Rs( :login ) )}
   <?r else ?>
-  #{A( 'Login', :href => Rs( :login ) )}
+    #{A( 'Bookmark', :href => R( BookmarkController, :add ) )} |
+    #{A( 'Search', :href => R( BookmarkController, :search ) )} |
+    Logged in as #{user.username} |
+    #{A( 'Logout', :href => Rs( :logout ) )}
   <?r end ?>
   </div>
 

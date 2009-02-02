@@ -2,12 +2,16 @@ require 'set'
 
 class BookmarkController < Ramaze::Controller
   map '/uri'
-  helper :user
+  helper :stack, :user
 
   layout '/page' => [ :add ]
 
   def add
-    if logged_in? && request.post?
+    if ! logged_in?
+      call R( MainController, :login )
+    end
+
+    if request.post?
       bm = Bookmark.find_or_create( :uri => h( request[ 'uri' ] ) )
 
       user.bookmark_add(

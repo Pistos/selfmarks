@@ -1,6 +1,6 @@
 class MainController < Ramaze::Controller
   layout '/page' => [ :index, :login, :logout ]
-  helper :user
+  helper :stack, :user
 
   # ----------------------------------------------
 
@@ -14,7 +14,7 @@ class MainController < Ramaze::Controller
     if request.post?
       user_login
       if logged_in?
-        redirect Rs( :/ )
+        answer Rs( :/ )
       end
     end
   end

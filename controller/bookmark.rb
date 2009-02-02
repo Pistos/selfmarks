@@ -2,6 +2,9 @@ class BookmarkController < Ramaze::Controller
   map '/uri'
   helper :user
 
-  def add( *args )
+  layout '/page' => [ :add ]
+
+  def add
+    @uri = request[ 'uri' ]
   end
 end

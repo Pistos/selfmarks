@@ -5,7 +5,7 @@ class MainController < Ramaze::Controller
   # ----------------------------------------------
 
   def index
-
+    @bookmarklet_source = File.read( 'bookmarklet.js' )
   end
 
   def login

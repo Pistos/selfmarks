@@ -1,0 +1,6 @@
+# Copy this file to config.rb and then edit to taste.
+
+module SelfMarks
+  PORT = 8011
+  HOST = "http://localhost:#{PORT}"
+end

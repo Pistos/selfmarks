@@ -5,7 +5,9 @@ class MainController < Ramaze::Controller
   # ----------------------------------------------
 
   def index
-    @bookmarklet_source = File.read( 'bookmarklet.js' )
+    @bookmarklet_source = h( %{
+      window.open( '#{SelfMarks::HOST}/uri/add?uri=' + encodeURIComponent( window.location.href ) + '&title=' + encodeURIComponent( document.title ) );
+    }.strip )
   end
 
   def login

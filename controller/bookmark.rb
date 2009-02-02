@@ -64,7 +64,7 @@ class BookmarkController < Ramaze::Controller
   def requested_tags
     tags_in = request[ 'tags' ]
     if tags_in && tags_in.any?
-      tags_in.split /[\s,+]+/
+      tags_in.split( /[\s,+]+/ ).collect { |tag| h( tag ) }
     else
       []
     end

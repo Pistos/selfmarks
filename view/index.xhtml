@@ -6,10 +6,12 @@ Bookmarklet: <a href="javascript:#{h(@bookmarklet_source)}">SelfMarks</a><br/>
 
 <h4>Bookmarks</h4>
 
-<?r user.bookmarks.each do |bm| ?>
+#{@pager.navigation if @pager.needed?}
+<?r @pager.each do |bm| ?>
   <div class="bookmark">
     <a href="#{bm.uri}">#{bm.title(user)}</a>
   </div>
 <?r end ?>
+#{@pager.navigation if @pager.needed?}
 
 <?r end ?>

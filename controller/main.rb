@@ -1,6 +1,8 @@
 class MainController < Ramaze::Controller
   layout '/page' => [ :index, :login, :openid, :logout ]
-  helper :identity, :stack, :user
+  helper :identity, :paginate, :stack, :user
+
+  trait :paginate => { :limit => 20, }
 
   # ----------------------------------------------
 
@@ -12,6 +14,10 @@ class MainController < Ramaze::Controller
         window.location( href );
       }
     }.gsub( /\s+/, ' ' ).strip
+
+    if logged_in?
+      @pager = paginate( user.bookmarks )
+    end
   end
 
   def login

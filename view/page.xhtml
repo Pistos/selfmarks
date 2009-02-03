@@ -17,7 +17,7 @@
   <?r else ?>
     #{A( 'Bookmark', :href => R( BookmarkController, :add ) )} |
     #{A( 'Search', :href => R( BookmarkController, :search ) )} |
-    Logged in as #{user.username} |
+    Logged in as #{user} |
     #{A( 'Logout', :href => Rs( :logout ) )}
   <?r end ?>
   </div>

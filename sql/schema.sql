@@ -1,9 +1,15 @@
 CREATE TABLE users (
     id                 SERIAL          PRIMARY KEY,
-    username           VARCHAR( 64 )   NOT NULL,
-    encrypted_password VARCHAR( 512 )  NOT NULL,
+    username           VARCHAR( 64 ),
+    encrypted_password VARCHAR( 512 ),
     time_created       TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    openid             VARCHAR( 1024 )
+    openid             VARCHAR( 1024 ),
+    CONSTRAINT identifiable CHECK (
+        (
+            username IS NOT NULL
+            AND encrypted_password IS NOT NULL
+        ) OR openid IS NOT NULL
+    )
 );
 
 CREATE TABLE tags (

@@ -8,9 +8,9 @@ class User < DBI::Model( :users )
     if credentials[ :openid ]
       User[ :openid => credentials[ :openid ] ]
     else
-      encrypted_password = Digest::SHA1.hexdigest( credentials[ 'password' ] )
+      encrypted_password = Digest::SHA1.hexdigest( credentials[ :password ] )
       User[
-        :username => credentials[ 'username' ],
+        :username => credentials[ :username ],
         :encrypted_password => encrypted_password
       ]
     end
@@ -35,5 +35,9 @@ class User < DBI::Model( :users )
       self.id, bookmark.id, title, notes,
       self.id, bookmark.id
     )
+  end
+
+  def to_s
+    username || openid
   end
 end

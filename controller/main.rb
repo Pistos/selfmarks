@@ -36,11 +36,17 @@ class MainController < Ramaze::Controller
 
   def openid
     redirect_referrer  if logged_in?
-    oid = session[ :openid ][ :identity ]
+    oid = session[ :openid ] ? session[ :openid ][ :identity ] : nil
     if oid
       user_login( :openid => oid )
       if ! logged_in?
-        flash[ :error ] = "There is no account with the OpenID #{oid}."
+        u = User.create( :openid => oid )
+        if u
+          flash[ :success ] = "Created account with OpenID #{oid}."
+          user_login( :openid => u.openid )
+        else
+          flash[ :error ] = "There is no account with the OpenID #{oid}; failed to create one."
+        end
       else
         flash[ :success ] = "Logged in with OpenID."
         redirect_referrer
@@ -50,6 +56,7 @@ class MainController < Ramaze::Controller
 
   def logout
     user_logout
+    session[ :openid ] = nil
     redirect Rs( :/ )
   end
 end

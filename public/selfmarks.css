@@ -1,0 +1,11 @@
+#selfmarks-window {
+    padding: 1em;
+    margin: 0px auto;
+    width: 100%;
+    border-bottom: 2px solid blue;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: hidden;
+    background: white;
+}

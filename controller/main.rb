@@ -7,13 +7,7 @@ class MainController < Ramaze::Controller
   # ----------------------------------------------
 
   def index
-    @bookmarklet_source = %{
-      var href='#{SelfMarks::HOST}/uri/add?uri=' + encodeURIComponent( window.location.href ) +
-        '&title=' + encodeURIComponent( document.title );
-      if( ! window.open( href ) ) {
-        window.location( href );
-      }
-    }.gsub( /\s+/, ' ' ).strip
+    @bookmarklet_source = render_template( './bookmarklet.js' ).gsub( /\s+/, ' ' ).strip
 
     if logged_in?
       @pager = paginate( user.bookmarks_structs )
@@ -21,6 +15,11 @@ class MainController < Ramaze::Controller
         bm.tags = Bookmark[ bm.id ].tags( user ).join( ' ' )
       end
     end
+  end
+
+  define_method 'selfmarks.js' do
+    @window_html = render_template( 'selfmarks_window.xhtml' ).gsub( /\s+/, ' ' ).strip
+    render_template 'selfmarks.js'
   end
 
   def login

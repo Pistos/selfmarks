@@ -1,6 +1,6 @@
 if( $( '#selfmarks-window' ).length == 0 ) {
     $( 'head' ).append(
-        '<link rel="stylesheet" href="#{SelfMarks::HOST}/selfmarks.css" type="text/css" media="screen"/>'
+        '<link rel="stylesheet" href="#{SelfMarks::HOST}/uri/add_window.css" type="text/css" media="screen"/>'
     );
     var div = $( '#{@window_html}' );
     div.hide();

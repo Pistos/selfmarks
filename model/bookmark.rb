@@ -1,4 +1,4 @@
-BookmarkStruct = Struct.new( :id, :uri, :uri_editable, :title, :tags, :notes )
+BookmarkStruct = Struct.new( :id, :uri, :uri_editable, :title, :tags, :notes, :time_created )
 
 class Bookmark < DBI::Model( :bookmarks )
   def title( user )
@@ -109,6 +109,20 @@ class Bookmark < DBI::Model( :bookmarks )
     )
   end
 
+  def time_created( user )
+    $dbh.sc(
+      %{
+        SELECT time_created
+        FROM users_bookmarks
+        WHERE
+          user_id = ?
+          AND bookmark_id = ?
+      },
+      user.id,
+      self.id
+    )
+  end
+
   def to_struct( user )
     struct = BookmarkStruct.new
     struct.id = self.id
@@ -116,6 +130,7 @@ class Bookmark < DBI::Model( :bookmarks )
     struct.title = title( user )
     struct.tags = tags( user ).join( ' ' )
     struct.notes = notes( user )
+    struct.time_created = time_created( user )
     struct
   end
 end

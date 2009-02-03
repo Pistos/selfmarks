@@ -20,12 +20,12 @@ CREATE TABLE tags (
 CREATE TABLE bookmarks (
     id           SERIAL          PRIMARY KEY,
     uri          VARCHAR( 1024 ) NOT NULL,
-    time_created TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE users_bookmarks (
     user_id      INTEGER         NOT NULL REFERENCES users( id ),
     bookmark_id  INTEGER         NOT NULL REFERENCES bookmarks( id ),
+    time_created TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     title        VARCHAR( 256 )  NOT NULL,
     notes        VARCHAR( 4096 ),
     UNIQUE( user_id, bookmark_id )

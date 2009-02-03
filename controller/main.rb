@@ -17,11 +17,6 @@ class MainController < Ramaze::Controller
     end
   end
 
-  define_method 'selfmarks.js' do
-    @window_html = render_template( 'selfmarks_window.xhtml' ).gsub( /\s+/, ' ' ).strip
-    render_template 'selfmarks.js'
-  end
-
   def login
     redirect_referrer  if logged_in?
 

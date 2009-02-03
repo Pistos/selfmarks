@@ -11,6 +11,6 @@ function load_js( uri, id ) {
 }
 
 ( function() {
-    load_js( 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js' );
-    load_js( '#{SelfMarks::HOST}/selfmarks.js?' );
+    load_js( 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js', 'selfmarks-jquery' );
+    load_js( '#{SelfMarks::HOST}/uri/add_window.js', 'selfmarks-javascript' );
 } )();

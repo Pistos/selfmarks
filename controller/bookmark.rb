@@ -37,6 +37,16 @@ class BookmarkController < Ramaze::Controller
     end
   end
 
+  define_method 'add_window.js' do
+    @bookmark = BookmarkStruct.new
+    @bookmark.uri = h( request[ 'uri' ] )
+    @bookmark.uri_editable = true
+    @bookmark.title = h( request[ 'title' ] )
+
+    @window_html = render_template( 'add_window.xhtml' ).gsub( /\s+/, ' ' ).strip
+    render_template 'add_window.js'
+  end
+
   def edit( bookmark_id )
     if ! logged_in?
       call R( MainController, :login )

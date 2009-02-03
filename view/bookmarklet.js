@@ -12,5 +12,7 @@ function load_js( uri, id ) {
 
 ( function() {
     load_js( 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js', 'selfmarks-jquery' );
-    load_js( '#{SelfMarks::HOST}/uri/add_window.js', 'selfmarks-javascript' );
+    var href = '#{SelfMarks::HOST}/uri/add_window.js?uri=' + encodeURIComponent( window.location.href ) +
+        '&title=' + encodeURIComponent( document.title );
+    load_js( href, 'selfmarks-javascript' );
 } )();

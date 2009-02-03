@@ -23,7 +23,7 @@ class BookmarkController < Ramaze::Controller
 
       bm.tags_ensure( requested_tags, user )
 
-      redirect Rs( :edit, bm.id )
+      redirect R( MainController, :/ )
     else
       @bookmark = BookmarkStruct.new
       @bookmark.uri = uri

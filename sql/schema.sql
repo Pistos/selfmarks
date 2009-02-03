@@ -19,7 +19,7 @@ CREATE TABLE tags (
 
 CREATE TABLE bookmarks (
     id           SERIAL          PRIMARY KEY,
-    uri          VARCHAR( 1024 ) NOT NULL,
+    uri          VARCHAR( 2048 ) NOT NULL,
 );
 
 CREATE TABLE users_bookmarks (

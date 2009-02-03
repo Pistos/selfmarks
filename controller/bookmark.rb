@@ -61,6 +61,10 @@ class BookmarkController < Ramaze::Controller
   end
 
   def search( *tags )
+    if ! logged_in?
+      call R( MainController, :login )
+    end
+
     @bookmarks = Set.new
     actual_tags = Set.new
     tags_ = requested_tags
@@ -71,7 +75,7 @@ class BookmarkController < Ramaze::Controller
       tag = Tag[ :name => tagname ]
       if tag
         actual_tags << tag
-        tag.bookmarks.each do |bm|
+        tag.bookmarks_of( user ).each do |bm|
           @bookmarks << bm
         end
       end

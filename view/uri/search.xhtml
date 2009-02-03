@@ -6,8 +6,6 @@
   <h4>Bookmarks tagged with any of: #{@tags}</h4>
 <?r end ?>
 
-<ul>
 <?r @bookmarks.each do |bm| ?>
-  <li><a href="#{bm.uri}">#{bm.title(user)}</a></li>
+  #{render_template( 'partial.xhtml', :bookmark => bm.to_struct( user ) )}
 <?r end ?>
-</ul>

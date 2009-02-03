@@ -8,9 +8,7 @@ Bookmarklet: <a href="javascript:#{h(@bookmarklet_source)}">SelfMarks</a><br/>
 
 #{@pager.navigation if @pager.needed?}
 <?r @pager.each do |bm| ?>
-  <div class="bookmark">
-    <a href="#{bm.uri}">#{bm.title(user)}</a>
-  </div>
+  #{render_template( 'uri/partial.xhtml', :bookmark => bm.to_struct( user ) )}
 <?r end ?>
 #{@pager.navigation if @pager.needed?}
 

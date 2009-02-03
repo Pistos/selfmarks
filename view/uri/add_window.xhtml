@@ -1,12 +1,12 @@
 <div id="selfmarks-window">
 
-  <form method="POST" action="#{SelfMarks::HOST}/uri/add">
+  <form method="POST" action="javascript:return false;">
     <table>
       <tr>
         <td><label>URI:</label></td>
         <td>
           <?r if @bookmark.uri_editable ?>
-          <input type="text" name="uri" value="#{@bookmark.uri}" size="50"/>
+          <input type="text" name="uri" value="#{@bookmark.uri}" size="50" id="selfmarks-uri"/>
           <?r else ?>
           #{@bookmark.uri}
           <?r end ?>
@@ -14,19 +14,19 @@
       </tr>
       <tr>
         <td><label>Title:</label></td>
-        <td><input type="text" name="title" value="#{@bookmark.title}" size="50"/></td>
+        <td><input type="text" name="title" value="#{@bookmark.title}" size="50" id="selfmarks-title"/></td>
       </tr>
       <tr>
         <td><label>Tags:</label></td>
-        <td><input type="text" name="tags" value="#{@bookmark.tags}" size="50"/></td>
+        <td><input type="text" name="tags" value="#{@bookmark.tags}" size="50" id="selfmarks-tags"/></td>
       </tr>
       <tr>
         <td><label>Notes:</label></td>
-        <td><textarea name="notes" rows="6" cols="50">#{@bookmark.notes}</textarea></td>
+        <td><textarea name="notes" rows="6" cols="50" id="selfmarks-notes">#{@bookmark.notes}</textarea></td>
       </tr>
       <tr>
         <td></td>
-        <td><input type="submit"/></td>
+        <td><input type="submit" value="Submit" id="selfmarks-submit"/></td>
       </tr>
     </table>
   </form>

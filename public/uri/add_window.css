@@ -6,7 +6,6 @@
     position: fixed;
     right: 0px;
     top: 0px;
-    display: hidden;
     background: white;
     z-index: 1000;
 }

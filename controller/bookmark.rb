@@ -12,7 +12,7 @@ class BookmarkController < Ramaze::Controller
     end
 
     uri = h( request[ 'uri' ] )
-    if request.post?
+    if request.post? or request[ 'jsoncallback' ]
       bm = Bookmark.find_or_create( :uri => uri )
 
       user.bookmark_ensure(

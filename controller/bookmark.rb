@@ -25,6 +25,11 @@ class BookmarkController < Ramaze::Controller
 
       redirect R( MainController, :/ )
     else
+      bm = Bookmark[ :uri => uri ]
+      if bm && user.bookmark( bm.id )
+        redirect Rs( :edit, bm.id )
+      end
+
       @bookmark = BookmarkStruct.new
       @bookmark.uri = uri
       @bookmark.uri_editable = true

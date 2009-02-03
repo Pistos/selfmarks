@@ -1,3 +1,11 @@
+body {
+    font-size: 12px;
+}
+
+label {
+    font-size: 12px;
+}
+
 #selfmarks-window {
     padding: 1em;
     margin: 0px auto;

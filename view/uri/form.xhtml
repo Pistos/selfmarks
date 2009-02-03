@@ -1,7 +1,7 @@
   <form method="POST">
     <table>
       <tr>
-        <td>URI:</td>
+        <td><label>URI:</label></td>
         <td>
           <?r if @bookmark.uri_editable ?>
           <input type="text" name="uri" value="#{@bookmark.uri}" size="80"/>
@@ -11,15 +11,15 @@
         </td>
       </tr>
       <tr>
-        <td>Title:</td>
+        <td><label>Title:</label></td>
         <td><input type="text" name="title" value="#{@bookmark.title}" size="80"/></td>
       </tr>
       <tr>
-        <td>Tags:</td>
+        <td><label>Tags:</label></td>
         <td><input type="text" name="tags" value="#{@bookmark.tags}" size="80"/></td>
       </tr>
       <tr>
-        <td>Notes:</td>
+        <td><label>Notes:</label></td>
         <td><textarea name="notes" rows="6" cols="80">#{@bookmark.notes}</textarea></td>
       </tr>
       <tr>

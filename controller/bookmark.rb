@@ -75,8 +75,11 @@ class BookmarkController < Ramaze::Controller
       tag = Tag[ :name => tagname ]
       if tag
         actual_tags << tag
-        tag.bookmarks_of( user ).each do |bm|
-          @bookmarks << bm
+        tag_bookmarks = tag.bookmarks_of( user )
+        if @bookmarks.empty?
+          @bookmarks = tag_bookmarks
+        else
+          @bookmarks &= tag_bookmarks
         end
       end
     end

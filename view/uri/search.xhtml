@@ -3,7 +3,7 @@
 </form>
 
 <?r if @tags.any? ?>
-  <h4>Bookmarks tagged with any of: #{@tags}</h4>
+  <h4>Bookmarks tagged #{@tags}</h4>
 <?r end ?>
 
 <?r @bookmarks.each do |bm| ?>

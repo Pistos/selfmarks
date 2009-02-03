@@ -38,12 +38,17 @@ class BookmarkController < Ramaze::Controller
   end
 
   define_method 'add_window.js' do
-    @bookmark = BookmarkStruct.new
-    @bookmark.uri = h( request[ 'uri' ] )
-    @bookmark.uri_editable = true
-    @bookmark.title = h( request[ 'title' ] )
+    if ! logged_in?
+      @window_html = render_template( 'add_window_login.xhtml' ).gsub( /\s+/, ' ' ).strip
+    else
+      @bookmark = BookmarkStruct.new
+      @bookmark.uri = h( request[ 'uri' ] )
+      @bookmark.uri_editable = true
+      @bookmark.title = h( request[ 'title' ] )
 
-    @window_html = render_template( 'add_window.xhtml' ).gsub( /\s+/, ' ' ).strip
+      @window_html = render_template( 'add_window.xhtml' ).gsub( /\s+/, ' ' ).strip
+    end
+
     render_template 'add_window.js'
   end
 

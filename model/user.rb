@@ -16,13 +16,19 @@ class User < DBI::Model( :users )
     end
   end
 
-  def bookmark_ensure( bookmark, title, notes )
+  def bookmark_ensure( bookmark, title, notes, time_created = nil )
+    params = [ self.id, bookmark.id, title, notes, ]
+    if time_created
+      params << time_created
+    end
+    params += [ self.id, bookmark.id, ]
+
     $dbh.i(
       %{
         INSERT INTO users_bookmarks (
-          user_id, bookmark_id, title, notes
+          user_id, bookmark_id, title, notes#{time_created ? ', time_created' : ''}
         ) SELECT
-          ?, ?, ?, ?
+          ?, ?, ?, ?#{time_created ? ', ?' : ''}
         WHERE NOT EXISTS(
           SELECT 1
           FROM users_bookmarks
@@ -32,8 +38,7 @@ class User < DBI::Model( :users )
           LIMIT 1
         )
       },
-      self.id, bookmark.id, title, notes,
-      self.id, bookmark.id
+      *params
     )
   end
 

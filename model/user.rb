@@ -46,6 +46,24 @@ class User < DBI::Model( :users )
     username || openid
   end
 
+  def bookmark( bookmark_id )
+    Bookmark.s1(
+      %{
+        SELECT
+          b.*
+        FROM
+            bookmarks b
+          , users_bookmarks ub
+        WHERE
+          ub.user_id = ?
+          AND ub.bookmark_id = ?
+          AND b.id = ub.bookmark_id
+      },
+      self.id,
+      bookmark_id
+    )
+  end
+
   def bookmarks
     Bookmark.s(
       %{
@@ -92,5 +110,19 @@ class User < DBI::Model( :users )
       struct.time_created = bm.time_created
       struct
     }
+  end
+
+  def delete_bookmark( bookmark_id )
+    $dbh.d(
+      %{
+        DELETE FROM
+          users_bookmarks ub
+        WHERE
+          ub.user_id = ?
+          AND ub.bookmark_id = ?
+      },
+      self.id,
+      bookmark_id
+    )
   end
 end

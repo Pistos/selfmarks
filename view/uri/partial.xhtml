@@ -1,7 +1,10 @@
 <div class="bookmark">
   #{@bookmark.time_created.strftime "%Y-%m-%d"}
   <a href="#{@bookmark.uri}">#{@bookmark.title}</a>
-  [#{A( 'edit', :href => R( BookmarkController, :edit, @bookmark.id ) )}]
+  [
+  #{A( 'edit', :href => R( BookmarkController, :edit, @bookmark.id ) )} |
+  #{A( 'delete', :href => R( BookmarkController, :delete, @bookmark.id ) )}
+  ]
   <div class="meta">
     <div class="tags">#{@bookmark.tags}</div>
     <div class="notes">#{@bookmark.notes}</div>

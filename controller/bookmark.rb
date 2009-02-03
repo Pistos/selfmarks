@@ -74,6 +74,21 @@ class BookmarkController < Ramaze::Controller
     @tags = actual_tags.to_a.join( ' ' )
   end
 
+  def delete( bookmark_id )
+    if ! logged_in?
+      call R( MainController, :login )
+    end
+
+    bm_id = bookmark_id.to_i
+    bm = user.bookmark( bm_id )
+    if bm
+      user.delete_bookmark( bm_id )
+    end
+
+    flash[ :success ] = "Deleted #{bm.uri}."
+    redirect R( MainController, :/ )
+  end
+
   def requested_tags
     tags_in = request[ 'tags' ]
     if tags_in && tags_in.any?

@@ -6,5 +6,5 @@ if( $( '#selfmarks-window' ).length == 0 ) {
     div.hide();
     $( 'body' ).append( div );
 }
-$( '#selfmarks-window' ).slideToggle( 'normal' );
+$( '#selfmarks-window' ).toggle( 'fast' );
 

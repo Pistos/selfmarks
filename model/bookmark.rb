@@ -62,6 +62,7 @@ class Bookmark < DBI::Model( :bookmarks )
             bookmark_id = ?
             AND tag_id = ?
             AND user_id = ?
+          LIMIT 1
         )
       },
       self.id,

@@ -4,7 +4,7 @@ if( $( '#selfmarks-window' ).length == 0 ) {
     );
     var div = $( '#{@window_html}' );
     div.hide();
-    $( 'body' ).append( div );
+    $( 'body' ).prepend( div );
 }
 $( '#selfmarks-window' ).toggle( 'fast' );
 

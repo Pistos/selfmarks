@@ -63,4 +63,34 @@ class User < DBI::Model( :users )
       self.id
     )
   end
+
+  def bookmarks_structs
+    $dbh.s(
+      %{
+        SELECT
+          b.id,
+          b.uri,
+          ub.title,
+          ub.notes,
+          ub.time_created
+        FROM
+            bookmarks b
+          , users_bookmarks ub
+        WHERE
+          ub.user_id = ?
+          AND b.id = ub.bookmark_id
+        ORDER BY
+          ub.time_created DESC
+      },
+      self.id
+    ).map { |bm|
+      struct = BookmarkStruct.new
+      struct.id = bm.id_
+      struct.uri = bm.uri
+      struct.title = bm.title
+      struct.notes = bm.notes
+      struct.time_created = bm.time_created
+      struct
+    }
+  end
 end

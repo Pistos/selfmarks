@@ -16,7 +16,10 @@ class MainController < Ramaze::Controller
     }.gsub( /\s+/, ' ' ).strip
 
     if logged_in?
-      @pager = paginate( user.bookmarks )
+      @pager = paginate( user.bookmarks_structs )
+      @pager.each do |bm|
+        bm.tags = Bookmark[ bm.id ].tags( user ).join( ' ' )
+      end
     end
   end
 

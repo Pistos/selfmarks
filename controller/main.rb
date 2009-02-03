@@ -6,8 +6,12 @@ class MainController < Ramaze::Controller
 
   def index
     @bookmarklet_source = %{
-      window.open( '#{SelfMarks::HOST}/uri/add?uri=' + encodeURIComponent( window.location.href ) + '&title=' + encodeURIComponent( document.title ) );
-    }.strip
+      var href='#{SelfMarks::HOST}/uri/add?uri=' + encodeURIComponent( window.location.href ) +
+        '&title=' + encodeURIComponent( document.title );
+      if( ! window.open( href ) ) {
+        window.location( href );
+      }
+    }.gsub( /\s+/, ' ' ).strip
   end
 
   def login

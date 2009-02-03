@@ -80,6 +80,7 @@ class BookmarkController < Ramaze::Controller
         end
       end
     end
+    @bookmarks = @bookmarks.sort { |a,b| b.time_created <=> a.time_created }
     @tags = actual_tags.to_a.join( ' ' )
   end
 

@@ -43,8 +43,11 @@ class BookmarkController < Ramaze::Controller
     end
 
     if request.post?
-      bm.set_title( user, h( request[ 'title' ] ) )
-      bm.set_notes( user, h( request[ 'notes' ] ) )
+      user.bookmark_ensure(
+        bm,
+        h( request[ 'title' ] ),
+        h( request[ 'notes' ] )
+      )
       bm.tags_ensure( requested_tags, user )
       flash[ :success ] = "Updated #{bm.uri}."
     end

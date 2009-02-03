@@ -40,4 +40,22 @@ class User < DBI::Model( :users )
   def to_s
     username || openid
   end
+
+  def bookmarks
+    Bookmark.s(
+      %{
+        SELECT
+          b.*
+        FROM
+            bookmarks b
+          , users_bookmarks ub
+        WHERE
+          ub.user_id = ?
+          AND b.id = ub.bookmark_id
+        ORDER BY
+          ub.time_created DESC
+      },
+      self.id
+    )
+  end
 end

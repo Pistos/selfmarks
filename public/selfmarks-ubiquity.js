@@ -2,11 +2,11 @@ CmdUtils.CreateCommand({
   name: "selfmark",
   homepage: "http://manveru.net",
   author: { name: "Michael Fellinger", email: "m.fellinger@gmail.com"},
-  contributors: ["Michael Fellinger"],
+  contributors: ["Michael Fellinger", "Pistos"],
   license: "MIT",
-  description: "Tags the current site using selfmarks",
-  icon: "http://sm.purepistos.net/favicon.ico",
-  help: "Save the current url to selfmarks with the tags input by the user. Any selected text on the page will be recorded as the note.",
+  description: "Tags the current site using SelfMarks",
+  icon: "#{SelfMarks::HOST}/favicon.ico",
+  help: "Save the current URI to SelfMarks with the tags input by the user. Any selected text on the page will be recorded as the note.",
 
   takes: {note: noun_arb_text},
   modifiers: {
@@ -26,7 +26,7 @@ CmdUtils.CreateCommand({
 
   execute: function(note, mods){
     var params = this.post_params(note, mods);
-    var response = jQuery.post("http://sm.purepistos.net/uri/add", params);
+    var response = jQuery.post("#{SelfMarks::HOST}/uri/add", params);
   },
 
   post_params: function(note, mods){

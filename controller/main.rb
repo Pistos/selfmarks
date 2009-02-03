@@ -56,4 +56,5 @@ class MainController < Ramaze::Controller
     session[ :openid ] = nil
     redirect Rs( :/ )
   end
+
 end

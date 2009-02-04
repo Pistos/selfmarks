@@ -8,20 +8,23 @@ label {
     font-size: 12px;
 }
 
+h1,h2,h3,h4,h5,h6 {
+    color: #883300;
+}
+
 a {
-    color: #0000CC;
+    color: #AA4400;
 }
 a:visited {
-    color: #778899;
+    color: #998877;
 }
 a:hover {
-    color: #000099;
-    background-color: #E0F0FF;
+    background-color: #FFDDBB;
     text-decoration: none;
 }
 a:active {
     color: white;
-    background-color: #6699FF;
+    background-color: #FF9966;
 }
 
 #logo-and-title {

@@ -6,3 +6,38 @@ label {
     font-size: 12px;
 }
 
+.bookmark {
+    padding        : 0.5em;
+    margin         : 0.5em;
+    border-top     : 1px solid #CCCCCC;
+}
+
+.bookmark table {
+    margin: 0px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.bookmark td {
+    font-size      : 12px;
+    vertical-align: top;
+}
+
+
+.date {
+    margin-right: 1em;
+}
+
+.bookmark .title {
+    font-size: 14px;
+}
+
+.bookmark .actions {
+    text-align: right;
+}
+.bookmark .action {
+    margin-left: 0.7em;
+}
+
+.bookmark .meta {
+}

@@ -1,5 +1,7 @@
 body {
-    font-size: 14px;
+    font-size : 14px;
+    margin    : 0px;
+    padding   : 30px;
 }
 
 label {
@@ -20,7 +22,7 @@ label {
 
 .bookmark td {
     font-size      : 12px;
-    vertical-align: top;
+    vertical-align : top;
 }
 
 

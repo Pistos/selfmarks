@@ -4,6 +4,8 @@ CREATE TABLE users (
     encrypted_password VARCHAR( 512 ),
     time_created       TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     openid             VARCHAR( 1024 ),
+    import_total       INTEGER,
+    import_done        INTEGER,
     CONSTRAINT identifiable CHECK (
         (
             username IS NOT NULL

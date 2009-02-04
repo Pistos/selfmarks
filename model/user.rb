@@ -125,4 +125,17 @@ class User < DBI::Model( :users )
       bookmark_id
     )
   end
+
+  def importing?
+    !!import_total
+  end
+
+  # Returns a float from 0.0 to 1.0
+  def import_progress
+    import_done.to_f / ( import_total || 999999999 )
+  end
+
+  def import_done?
+    import_total && ( import_done == import_total )
+  end
 end

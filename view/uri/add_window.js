@@ -31,3 +31,7 @@ $( '#selfmarks-submit' ).live( 'click', function() {
         } );
     return false;
 } );
+
+$( '#selfmarks-cancel' ).live( 'click', function() {
+    $( '#selfmarks-window' ).hide( 'fast' );
+} );

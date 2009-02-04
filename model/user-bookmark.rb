@@ -26,7 +26,7 @@ class UserBookmark < DBI::Model( :user_bookmarks )
     struct.id = self.bookmark_id
     struct.uri = uri
     struct.title = title
-    struct.tags = tags( user ).join( ' ' )
+    struct.tags = tags( user )
     struct.notes = notes
     struct.time_created = time_created
     struct

@@ -129,7 +129,7 @@ class Bookmark < DBI::Model( :bookmarks )
     struct.id = self.id
     struct.uri = uri
     struct.title = title( user )
-    struct.tags = tags( user ).join( ' ' )
+    struct.tags = tags( user )
     struct.notes = notes( user )
     struct.time_created = time_created( user )
     struct

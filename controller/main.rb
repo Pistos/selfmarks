@@ -12,7 +12,7 @@ class MainController < Ramaze::Controller
     if logged_in?
       @pager = paginate( user.bookmarks_structs )
       @pager.each do |bm|
-        bm.tags = Bookmark[ bm.id ].tags( user ).join( ' ' )
+        bm.tags = Bookmark[ bm.id ].tags( user )
       end
     end
   end

@@ -4,7 +4,11 @@
       <span class="date">#{@bookmark.time_created.strftime "%Y-%m-%d"}</span>
       <a class="title" href="#{@bookmark.uri}">#{@bookmark.title}</a>
       <div class="meta">
-        <div class="tags">#{@bookmark.tags}</div>
+        <div class="tags">
+        <?r @bookmark.tags.each do |tag| ?>
+          #{A( tag, :href => R( BookmarkController, :search, tag ) )}
+        <?r end ?>
+        </div>
         <div class="notes">#{@bookmark.notes}</div>
       </div>
     </td>

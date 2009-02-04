@@ -11,20 +11,11 @@ class BookmarkController < Ramaze::Controller
       call R( MainController, :login )
     end
 
-    uri = h( request[ 'uri' ] )
     if request.post? or request[ 'jsoncallback' ]
-      bm = Bookmark.find_or_create( :uri => uri )
-
-      user.bookmark_ensure(
-        bm,
-        h( request[ 'title' ] ),
-        h( request[ 'notes' ] )
-      )
-
-      bm.tags_ensure( requested_tags, user )
-
+      add_( request )
       redirect R( MainController, :/ )
     else
+      uri = h( request[ 'uri' ] )
       bm = Bookmark[ :uri => uri ]
       if bm && user.bookmark( bm.id )
         redirect Rs( :edit, bm.id )
@@ -36,6 +27,29 @@ class BookmarkController < Ramaze::Controller
       @bookmark.title = h( request[ 'title' ] )
     end
   end
+
+  def add_window_add
+    if ! logged_in?
+      json =  { 'error' => 'Not logged in.' }.to_json
+    else
+      add_( request )
+      json = { 'success' => 'success' }.to_json
+    end
+
+    response[ 'Content-Type' ] = 'application/json'
+    "#{request['jsoncallback']}(#{json})"
+  end
+
+  def add_( request )
+    bm = Bookmark.find_or_create( :uri => h( request[ 'uri' ] ) )
+    user.bookmark_ensure(
+      bm,
+      h( request[ 'title' ] ),
+      h( request[ 'notes' ] )
+    )
+    bm.tags_ensure( requested_tags, user )
+  end
+  private :add_
 
   define_method 'add_window.js' do
     if ! logged_in?

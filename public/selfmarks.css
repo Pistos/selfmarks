@@ -24,6 +24,14 @@ a:active {
     background-color: #6699FF;
 }
 
+#logo-and-title {
+    background-image: url( '/selfmarks-logo-and-title.png' );
+    width: 300px;
+    height: 57px;
+    padding: 0px;
+    margin: 0px 0px 10px 0px;
+}
+
 #menu-main {
     padding : 0px;
     margin  : 0px 0px 1.5em 0px;

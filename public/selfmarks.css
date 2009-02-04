@@ -8,6 +8,21 @@ label {
     font-size: 12px;
 }
 
+a {
+    color: #0000CC;
+}
+a:visited {
+    color: #3366DD;
+}
+a:hover {
+    color: #000099;
+    background-color: #E0F0FF;
+}
+a:active {
+    color: white;
+    background-color: #6699FF;
+}
+
 #menu-main {
     padding : 0px;
     margin  : 0px 0px 1.5em 0px;

@@ -10,4 +10,6 @@ require './models'
 Ramaze::acquire 'controller/*'
 Ramaze::acquire 'view/*'
 
+Ramaze::Global.cache_alternative[ :sessions ] = Ramaze::MemcachedCache
+
 Ramaze.start :port => SelfMarks::PORT, :adapter => :mongrel

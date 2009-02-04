@@ -16,7 +16,7 @@
       </tr>
       <tr>
         <td><label>Tags:</label></td>
-        <td><input type="text" name="tags" value="#{@bookmark.tags}" size="80"/></td>
+        <td><input type="text" name="tags" value="#{@bookmark.tags.join( ' ' )}" size="80"/></td>
       </tr>
       <tr>
         <td><label>Notes:</label></td>

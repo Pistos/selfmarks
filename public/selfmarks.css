@@ -8,6 +8,11 @@ label {
     font-size: 12px;
 }
 
+#menu-main {
+    padding : 0px;
+    margin  : 0px 0px 1.5em 0px;
+}
+
 .bookmark {
     padding        : 0.5em;
     margin         : 0.5em;
@@ -15,9 +20,9 @@ label {
 }
 
 .bookmark table {
-    margin: 0px;
-    border-collapse: collapse;
-    width: 100%;
+    margin          : 0px;
+    border-collapse : collapse;
+    width           : 100%;
 }
 
 .bookmark td {
@@ -30,16 +35,22 @@ label {
     margin-right: 1em;
 }
 
-.bookmark .title {
+.bookmark div.title {
+    margin-bottom: 0.5em;
+}
+.bookmark a.title {
     font-size: 14px;
 }
 
 .bookmark .actions {
-    text-align: right;
+    text-align   : right;
+    white-space  : nowrap;
+    padding-left : 1em;
 }
 .bookmark .action {
     margin-left: 0.7em;
 }
 
-.bookmark .meta {
+.bookmark .tags a {
+    margin-right : 0.3em;
 }

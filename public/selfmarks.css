@@ -12,11 +12,12 @@ a {
     color: #0000CC;
 }
 a:visited {
-    color: #3366DD;
+    color: #778899;
 }
 a:hover {
     color: #000099;
     background-color: #E0F0FF;
+    text-decoration: none;
 }
 a:active {
     color: white;

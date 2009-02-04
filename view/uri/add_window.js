@@ -14,10 +14,20 @@ $( '#selfmarks-submit' ).live( 'click', function() {
     var tags = $( '#selfmarks-tags' ).val();
     var notes = $( '#selfmarks-notes' ).val();
     $.getJSON(
-        '#{SelfMarks::HOST}/uri/add?jsoncallback=?',
+        '#{SelfMarks::HOST}/uri/add_window_add?jsoncallback=?',
         {   uri   : uri,
             title : title,
             tags  : tags,
-            notes : notes } );
+            notes : notes },
+        function( json ) {
+            if( json[ 'error' ] ) {
+                $( '#selfmarks-error' ).append( 'Bookmarking error.' );
+            } else if( json[ 'success' ] == 'success' ) {
+                $( '#selfmarks-message' ).append( 'Successfully bookmarked URI.' );
+                setTimeout( function() {
+                    $( '#selfmarks-window' ).toggle( 'slow' ); },
+                    2000 );
+            }
+        } );
     return false;
 } );

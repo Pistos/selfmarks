@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'ramaze'
 require 'm4dbi'
+require 'json'
 
 require './config'
 $dbh = DBI.connect( "DBI:#{SelfMarks::DB_TYPE}:#{SelfMarks::DB_DATABASE}", SelfMarks::DB_USERNAME, SelfMarks::DB_PASSWORD )

@@ -11,29 +11,46 @@ class BookmarkController < Ramaze::Controller
       call R( MainController, :login )
     end
 
+    @bookmark = BookmarkStruct.new
+    @bookmark.uri_editable = true
     if request.post? or request[ 'jsoncallback' ]
-      add_( request )
-      redirect R( MainController, :/ )
+      begin
+        add_( request )
+        redirect R( MainController, :/ )
+      rescue DBI::ProgrammingError => e
+        if e.message =~ /violates.*valid_uri/
+          flash[ :error ] = "A URI must be provided."
+        else
+          raise e
+        end
+      end
     else
       uri = h( request[ 'uri' ] )
+
       bm = Bookmark[ :uri => uri ]
       if bm && user.bookmark( bm.id )
         redirect Rs( :edit, bm.id )
       end
 
-      @bookmark = BookmarkStruct.new
       @bookmark.uri = uri
-      @bookmark.uri_editable = true
       @bookmark.title = h( request[ 'title' ] )
     end
   end
 
   def add_window_add
     if ! logged_in?
-      json =  { 'error' => 'Not logged in.' }.to_json
+      json = { 'error' => 'Not logged in.' }.to_json
     else
-      add_( request )
-      json = { 'success' => 'success' }.to_json
+      begin
+        add_( request )
+        json = { 'success' => 'success' }.to_json
+      rescue DBI::ProgrammingError => e
+        if e.message =~ /violates.*valid_uri/
+          json = { 'error' => 'A URI must be provided.' }.to_json
+        else
+          raise e
+        end
+      end
     end
 
     response[ 'Content-Type' ] = 'application/json'

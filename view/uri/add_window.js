@@ -21,7 +21,7 @@ $( '#selfmarks-submit' ).live( 'click', function() {
             notes : notes },
         function( json ) {
             if( json[ 'error' ] ) {
-                $( '#selfmarks-error' ).append( 'Bookmarking error.' );
+                $( '#selfmarks-error' ).append( 'Bookmarking error: ' + json[ 'error' ] );
             } else if( json[ 'success' ] == 'success' ) {
                 $( '#selfmarks-message' ).append( 'Successfully bookmarked URI.' );
                 setTimeout( function() {

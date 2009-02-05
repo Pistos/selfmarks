@@ -22,6 +22,9 @@ CREATE TABLE tags (
 CREATE TABLE bookmarks (
     id           SERIAL          PRIMARY KEY,
     uri          VARCHAR( 2048 ) NOT NULL,
+    CONSTRAINT valid_uri CHECK (
+        char_length( uri ) > 0
+    )
 );
 
 CREATE TABLE users_bookmarks (

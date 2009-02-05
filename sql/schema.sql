@@ -1,9 +1,9 @@
 CREATE TABLE users (
     id                 SERIAL          PRIMARY KEY,
-    username           VARCHAR( 64 ),
+    username           VARCHAR( 64 )   UNIQUE,
     encrypted_password VARCHAR( 512 ),
     time_created       TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    openid             VARCHAR( 1024 ),
+    openid             VARCHAR( 1024 ) UNIQUE,
     import_total       INTEGER,
     import_done        INTEGER,
     CONSTRAINT identifiable CHECK (

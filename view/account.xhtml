@@ -1,0 +1,35 @@
+<h3>Account</h3>
+
+<ul>
+<li>Bookmarklet: <a href="javascript:#{h(@bookmarklet_source)}">SelfMarks</a></li>
+<li><a href="ubiquity" target="selfmarks-ubiquity">Add Ubiquity Command</a></li>
+<li>#{A( 'Import Bookmarks', :href => R( MainController, :import ) )}</li>
+<li>#{A( 'Export Bookmarks', :href => R( MainController, :export ) )}</li>
+</ul>
+
+<form method="POST">
+
+<table id="account">
+  <tr>
+    <td>Username:</td>
+    <td><input type="text" name="_username" value="#{user.username}"/></td>
+  </tr>
+  <tr>
+    <td>New password:</td>
+    <td><input type="password" name="_password1"/></td>
+  </tr>
+  <tr>
+    <td>Confirm new password:</td>
+    <td><input type="password" name="_password2"/></td>
+  </tr>
+  <tr>
+    <td>OpenID:</td>
+    <td><input type="text" name="_openid" value="#{user.openid}" size="40"/></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><input type="submit" value="Update"/></td>
+  </tr>
+</table>
+
+</form>

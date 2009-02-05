@@ -1,5 +1,5 @@
 class MainController < Ramaze::Controller
-  layout '/page' => [ :export, :import, :index, :login, :openid, :logout ]
+  layout '/page' => [ :account, :export, :import, :index, :login, :openid, :logout ]
   helper :identity, :paginate, :stack, :user
 
   trait :paginate => { :limit => 20, }
@@ -7,8 +7,6 @@ class MainController < Ramaze::Controller
   # ----------------------------------------------
 
   def index
-    @bookmarklet_source = render_template( './bookmarklet.js' ).gsub( /\s+/, ' ' ).strip
-
     if logged_in?
       bookmarks = user.bookmarks_structs
       @count = bookmarks.size
@@ -163,5 +161,72 @@ Do Not Edit! -->
     today = Time.now.strftime( "%Y%m%d" )
     response[ 'content-disposition' ] =	"attachment; filename=\"delicious-#{today}.htm\""
     respond s, 200
+  end
+
+  def account
+    redirect_referrer  if ! logged_in?
+
+    @bookmarklet_source = render_template( './bookmarklet.js' ).gsub( /\s+/, ' ' ).strip
+
+    return  if ! request.post?
+
+    original_identifier = user.to_s
+
+    username = h( request[ '_username' ] )
+    password1 = h( request[ '_password1' ] )
+    password2 = h( request[ '_password2' ] )
+    openid = h( request[ '_openid' ] )
+
+    if password1 != password2
+      flash[ :error ] = "Account not updated: Passwords entered did not match."
+      return
+    end
+
+    if openid.empty?
+      openid = nil
+    end
+    if username.empty?
+      username = nil
+    end
+
+    # (1) Try to set OpenID first, then user/pass.
+    begin
+      user.openid = openid
+      user.username = username
+      if password1 and password1.any?
+        user.encrypted_password = Digest::SHA1.hexdigest( password1 )
+      end
+    rescue DBI::ProgrammingError => e
+      if e.message =~ /violates.*"identifiable"/
+        flash[ :error ] = "Account must have either an OpenID, or a username and password."
+      else
+        raise e
+      end
+    end
+
+    # (2) Try to set user/pass first, then OpenID.
+    begin
+      user.username = username
+      if password1 and password1.any?
+        user.encrypted_password = Digest::SHA1.hexdigest( password1 )
+      end
+      user.openid = openid
+      flash[ :error ] = nil
+    rescue DBI::ProgrammingError => e
+      if e.message =~ /violates.*"identifiable"/
+        flash[ :error ] = "Account must have either an OpenID, or a username and password."
+      else
+        raise e
+      end
+    end
+
+    if ! flash[ :error ]
+      flash[ :success ] = "Account updated."
+      if original_identifier != user.username && original_identifier != user.openid
+        redirect Rs( :logout )
+      end
+    end
+
+    redirect Rs( :account )
   end
 end

@@ -7,4 +7,5 @@ module SelfMarks
   DB_DATABASE = 'selfmarks'
   DB_USERNAME = 'selfmarks'
   DB_PASSWORD = 'selfmarks'
+  USE_MEMCACHED = false
 end

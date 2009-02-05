@@ -1,5 +1,5 @@
 class MainController < Ramaze::Controller
-  layout '/page' => [ :account, :export, :import, :index, :login, :openid, :logout ]
+  layout '/page' => [ :about, :account, :export, :import, :index, :login, :openid, :logout ]
   helper :identity, :paginate, :stack, :user
 
   trait :paginate => { :limit => 20, }
@@ -7,13 +7,15 @@ class MainController < Ramaze::Controller
   # ----------------------------------------------
 
   def index
-    if logged_in?
-      bookmarks = user.bookmarks_structs
-      @count = bookmarks.size
-      @pager = paginate( bookmarks )
-      @pager.each do |bm|
-        bm.tags = Bookmark[ bm.id ].tags( user )
-      end
+    if ! logged_in?
+      redirect Rs( :about )
+    end
+
+    bookmarks = user.bookmarks_structs
+    @count = bookmarks.size
+    @pager = paginate( bookmarks )
+    @pager.each do |bm|
+      bm.tags = Bookmark[ bm.id ].tags( user )
     end
   end
 

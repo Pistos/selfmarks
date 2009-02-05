@@ -16,10 +16,10 @@
 
   <table id="page-header"><tr>
     <td id="menu-main">
-    #{A( 'Home', :href => R( MainController, :/ ) )} |
     <?r if ! logged_in? ?>
       #{A( 'Login', :href => R( MainController, :openid ) )}
     <?r else ?>
+      #{A( 'Home', :href => R( MainController, :/ ) )} |
       #{A( 'Bookmark', :href => R( BookmarkController, :add ) )} |
       #{A( 'Account', :href => R( MainController, :account ) )} |
       Logged in as #{user} |

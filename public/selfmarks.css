@@ -112,3 +112,24 @@ div.bookmark .tags a {
 form.bookmark .submit {
     margin-right: 2em;
 }
+
+.quote {
+    font-style: oblique;
+    letter-spacing: 0.1em;
+}
+
+#git-get {
+    width: 2em;
+}
+#git-get #git_ {
+    display: none;
+}
+#git-get #get_ {
+    display: inline;
+}
+#git-get:hover #git_ {
+    display: inline;
+}
+#git-get:hover #get_ {
+    display: none;
+}

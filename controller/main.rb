@@ -1,5 +1,5 @@
 class MainController < Ramaze::Controller
-  layout '/page' => [ :import, :index, :login, :openid, :logout ]
+  layout '/page' => [ :export, :import, :index, :login, :openid, :logout ]
   helper :identity, :paginate, :stack, :user
 
   trait :paginate => { :limit => 20, }
@@ -130,4 +130,36 @@ class MainController < Ramaze::Controller
     redirect Rs( :import )
   end
 
+  def export
+    redirect_referrer  if ! logged_in?
+  end
+
+  def delicious
+    redirect_referrer  if ! logged_in?
+
+    @bookmarks_string = ''
+
+    user.bookmarks_structs.each do |bm|
+      t = Time.parse( bm.time_created.to_s ).to_i
+      tags = bm.tags
+      tags = tags ? tags.join( ',' ) : ''
+      @bookmarks_string << %|<DT><A HREF="#{bm.uri}" LAST_VISIT="#{t}" ADD_DATE="#{t}" TAGS="#{tags}">#{bm.title}</A>\n|
+      if bm.notes && bm.notes.any?
+        @bookmarks_string << "<DD>#{bm.notes}\n"
+      end
+    end
+
+    s = %{<!DOCTYPE NETSCAPE-Bookmark-file-1>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<!-- This is an automatically generated file.
+It will be read and overwritten.
+Do Not Edit! -->
+<TITLE>Bookmarks</TITLE>
+<H1>Bookmarks</H1>
+<DL><p>#{@bookmarks_string}</DL><p>}
+
+    today = Time.now.strftime( "%Y%m%d" )
+    response[ 'content-disposition' ] =	"attachment; filename=\"delicious-#{today}.htm\""
+    respond s, 200
+  end
 end

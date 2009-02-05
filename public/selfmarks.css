@@ -118,6 +118,17 @@ form.bookmark .submit {
     letter-spacing: 0.1em;
 }
 
+#about-header img {
+    float: right;
+    margin-left: 1.5em;
+    margin-bottom: 10em;
+}
+
+#about-header .quote {
+    padding: 3em 0px 2em 0px;
+    text-align: right;
+}
+
 #git-get {
     width: 2em;
 }

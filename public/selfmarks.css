@@ -45,6 +45,20 @@ a:active {
     background-color: #FF9966;
 }
 
+.flash {
+    padding          : 1em;
+    border           : 1px solid;
+    margin           : 1em 0px 0px 0px;
+}
+#flash_success {
+    border-color     : #DDBBAA;
+    background-color : #FFDDCC;
+}
+#flash_error {
+    border-color     : #DD9999;
+    background-color : #FFBBBB;
+}
+
 #logo-and-title {
     background-image: url( '/selfmarks-logo-and-title.png' );
     width: 278px;

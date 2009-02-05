@@ -6,9 +6,10 @@ Here's what you'll need:
   * A server
   * Ruby
   * Gems: ramaze m4dbi dbd-pg json hpricot
-  * PostgreSQL
   * Apache or nginx or the like
   * A domain or subdomain
+  * PostgreSQL
+  * memcached (optional)
 
 ### Steps
 

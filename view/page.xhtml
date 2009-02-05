@@ -27,10 +27,12 @@
       #{A( 'Logout', :href => R( MainController, :logout ) )}
     <?r end ?>
     </td>
+    <?r if logged_in? ?>
     <td id="page-search"><form method="POST" action="#{R( BookmarkController, :search )}">
       <input id="page-search-button" type="submit" value="Search"/>
       <input id="page-search-box" type="text" name="tags" value="#{@tags || 'Search'}" size="16"/>
     </form></td>
+    <?r end ?>
   </tr></table>
 
   #{flashbox}

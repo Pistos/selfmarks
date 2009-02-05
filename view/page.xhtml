@@ -20,11 +20,11 @@
     <?r if ! logged_in? ?>
       #{A( 'Login', :href => R( MainController, :openid ) )}
     <?r else ?>
-      #{A( 'Home', :href => R( MainController, :/ ) )} |
-      #{A( 'Bookmark', :href => R( BookmarkController, :add ) )} |
-      #{A( 'Account', :href => R( MainController, :account ) )} |
-      Logged in as #{user} |
+      #{A( 'Home', :href => R( MainController, :/ ) )}
+      #{A( 'Bookmark', :href => R( BookmarkController, :add ) )}
+      #{A( 'Account', :href => R( MainController, :account ) )}
       #{A( 'Logout', :href => R( MainController, :logout ) )}
+      <span>Logged in as #{user}</span>
     <?r end ?>
     </td>
     <?r if logged_in? ?>

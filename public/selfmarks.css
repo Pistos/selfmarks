@@ -46,16 +46,23 @@ a:active {
 }
 
 #page-header {
-    font-size: 14px;
-    width: 100%;
+    font-size     : 14px;
+    width         : 100%;
+    border-top    : 1px solid #AAAAAA;
+    border-bottom : 1px solid #AAAAAA;
 }
 #page-header td {
     vertical-align: top;
+    padding: 0.25em;
 }
 
 #menu-main {
     padding : 0px;
     margin  : 0px 0px 1.5em 0px;
+}
+
+#menu-main > * {
+    margin-left: 1em;
 }
 
 td#page-search {
@@ -135,7 +142,7 @@ form.bookmark .submit {
 }
 
 #about-header .quote {
-    padding: 2em 0px 2em 0px;
+    padding: 1.5em 0px 2em 0px;
     text-align: right;
 }
 

@@ -17,6 +17,7 @@
     #{A( 'Login', :href => R( MainController, :openid ) )}
   <?r else ?>
     #{A( 'Bookmark', :href => R( BookmarkController, :add ) )} |
+    #{A( 'Import', :href => R( MainController, :import ) )} |
     #{A( 'Search', :href => R( BookmarkController, :search ) )} |
     Logged in as #{user} |
     #{A( 'Logout', :href => R( MainController, :logout ) )}

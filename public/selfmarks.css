@@ -35,9 +35,36 @@ a:active {
     margin: 0px 0px 10px 0px;
 }
 
+#page-header {
+    font-size: 14px;
+    width: 100%;
+}
+#page-header td {
+    vertical-align: top;
+}
+
 #menu-main {
     padding : 0px;
     margin  : 0px 0px 1.5em 0px;
+}
+
+td#page-search {
+    text-align: right;
+}
+#page-search-box {
+    font-size: 12px;
+    text-align: right;
+    background-color: #FFF6F0;
+    color: #999999;
+}
+#page-search-button {
+    display: none;
+}
+td#page-search.focused #page-search-box {
+    color: #000000;
+}
+td#page-search.focused #page-search-button {
+    display: inline;
 }
 
 div.bookmark {

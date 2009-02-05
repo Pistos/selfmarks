@@ -14,7 +14,7 @@
   <div id="menu-main">
   #{A( 'Home', :href => Rs( :/ ) )} |
   <?r if ! logged_in? ?>
-    #{A( 'Login', :href => Rs( :login ) )}
+    #{A( 'Login', :href => Rs( :openid ) )}
   <?r else ?>
     #{A( 'Bookmark', :href => R( BookmarkController, :add ) )} |
     #{A( 'Search', :href => R( BookmarkController, :search ) )} |

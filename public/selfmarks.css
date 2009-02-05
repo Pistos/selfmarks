@@ -40,19 +40,19 @@ a:active {
     margin  : 0px 0px 1.5em 0px;
 }
 
-.bookmark {
+div.bookmark {
     padding        : 0.5em;
     margin         : 0.5em;
     border-top     : 1px solid #CCCCCC;
 }
 
-.bookmark table {
+div.bookmark table {
     margin          : 0px;
     border-collapse : collapse;
     width           : 100%;
 }
 
-.bookmark td {
+div.bookmark td {
     font-size      : 12px;
     vertical-align : top;
 }
@@ -62,22 +62,26 @@ a:active {
     margin-right: 1em;
 }
 
-.bookmark div.title {
+div.bookmark div.title {
     margin-bottom: 0.5em;
 }
-.bookmark a.title {
+div.bookmark a.title {
     font-size: 14px;
 }
 
-.bookmark .actions {
+div.bookmark .actions {
     text-align   : right;
     white-space  : nowrap;
     padding-left : 1em;
 }
-.bookmark .action {
+div.bookmark .action {
     margin-left: 0.7em;
 }
 
-.bookmark .tags a {
+div.bookmark .tags a {
     margin-right : 0.3em;
+}
+
+form.bookmark .submit {
+    margin-right: 2em;
 }

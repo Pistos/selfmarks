@@ -10,7 +10,9 @@ class MainController < Ramaze::Controller
     @bookmarklet_source = render_template( './bookmarklet.js' ).gsub( /\s+/, ' ' ).strip
 
     if logged_in?
-      @pager = paginate( user.bookmarks_structs )
+      bookmarks = user.bookmarks_structs
+      @count = bookmarks.size
+      @pager = paginate( bookmarks )
       @pager.each do |bm|
         bm.tags = Bookmark[ bm.id ].tags( user )
       end

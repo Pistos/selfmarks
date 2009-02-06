@@ -136,7 +136,7 @@ div.bookmark div.title {
     margin-bottom: 0.5em;
 }
 div.bookmark a.title {
-    font-size: 14px;
+    font-weight: bold;
 }
 
 div.bookmark .actions {

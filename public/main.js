@@ -9,6 +9,20 @@ $( document ).ready( function() {
         $( '#page-search' ).removeClass( 'focused' );
     } );
 
+    $( 'a.delete' ).click( function() {
+        var link = $(this);
+        $.getJSON(
+            link.attr( 'href' ),
+            function( json ) {
+                if( json.success ) {
+                    link.closest( '.bookmark' ).slideUp();
+                } else {
+                    alert( 'Failed to delete bookmark!' );
+                }
+            } );
+        return false;
+    } );
+
     $( '.flash' ).hide();
     $( '.flash' ).fadeIn( 2000 );
 } );

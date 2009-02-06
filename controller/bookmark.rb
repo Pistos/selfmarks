@@ -144,8 +144,9 @@ class BookmarkController < Ramaze::Controller
       user.delete_bookmark( bm_id )
     end
 
-    flash[ :success ] = "Deleted #{bm.uri}."
-    redirect R( MainController, :/ )
+    json = { 'success' => "Deleted #{bm.uri}." }.to_json
+    response[ 'Content-Type' ] = 'application/json'
+    json
   end
 
   def requested_tags

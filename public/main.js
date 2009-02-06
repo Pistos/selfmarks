@@ -8,4 +8,7 @@ $( document ).ready( function() {
     $( '#page-search-box' ).blur( function() {
         $( '#page-search' ).removeClass( 'focused' );
     } );
+
+    $( '.flash' ).hide();
+    $( '.flash' ).fadeIn( 2000 );
 } );

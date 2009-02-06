@@ -1,11 +1,15 @@
 body {
-    font-size           : 14px;
     margin              : 0px;
     padding             : 30px;
     background-image    : url( '/images/background.png' );
     background-color    : #D07100;
     background-position : center center;
     background-repeat   : repeat-y;
+}
+
+body, div, p, td {
+    font-family         : sans-serif;
+    font-size           : 14px;
 }
 
 #page {

@@ -1,0 +1,48 @@
+<h2>FAQ</h2>
+
+<h3>Why is there nothing on this website?</h3>
+
+<p>
+Selfmarks was designed from the start to be personal software.  It is intended
+to help <em>individuals</em> store, manage and search their bookmarks from any place
+and any device that can access the Internet.  Since the bookmarks are not shared,
+there is nothing to show a guest visiting the site.
+</p>
+
+<p>
+To see more, #{A( 'login or register', :href => Rs( :openid ) )}.
+</p>
+
+<h3>How is this better than social bookmarking?</h3>
+
+<p>
+Individuals (or small groups) can install Selfmarks on their own servers,
+which generally translates into into a faster user experience because:
+<ol>
+<li>The personal server is geographically closer to the individual.</li>
+<li>The personal server is not overloaded with millions of other users whose accounts have nothing to do with the individual.</li>
+<li>Selfmarks doesn't have to expend resources or clutter the interface with bookmark sharing features.</li>
+</ol>
+</p>
+
+<h3>How do I register or create an account?</h3>
+
+<p>
+If you have an
+<a href="http://openid.net/">OpenID</a>,
+#{A( 'use it', :href => Rs( :openid ) )} to automatically create an account
+(provided the site administrator has allowed automatic registrations).
+</p>
+
+<p>
+If you don't want to use OpenID, then contact
+the site administrator to ask him/her to manually create a user account for you.
+</p>
+
+<h3>How do I install Selfmarks for myself?</h3>
+
+<pre>
+git clone git://github.com/Pistos/selfmarks.git
+cd selfmarks
+less README.markdown
+</pre>

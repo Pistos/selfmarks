@@ -3,7 +3,7 @@
     <td>
       <div class="title">
         <span class="date">#{@bookmark.time_created.strftime "%Y-%m-%d"}</span>
-        <a class="title" href="#{@bookmark.uri}">#{@bookmark.title}</a>
+        <a class="title" href="#{@bookmark.uri}">#{@bookmark.title && @bookmark.title.any? ? @bookmark.title : '(no title)'}</a>
       </div>
       <div class="meta">
         <div class="tags">

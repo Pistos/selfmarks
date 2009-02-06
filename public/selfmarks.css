@@ -187,3 +187,19 @@ form.bookmark .submit {
 #git-get:hover #get_ {
     display: none;
 }
+
+.pager {
+    text-align: center;
+}
+.pager .grey {
+    color: #C0C0C0;
+}
+.pager .current {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+}
+.pager a {
+    margin: 0px;
+    padding: 0px 0.5em;
+}

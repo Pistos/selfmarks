@@ -1,4 +1,4 @@
-## SelfMarks Installation
+## Selfmarks Installation
 
 So you think you're geek enough to install and run Selfmarks?  Good.
 Here's what you'll need:
@@ -30,6 +30,6 @@ Here's what you'll need:
       INSERT INTO users ( username, encrypted_password )
       VALUES ( 'some_username', 'some_SHA1ed_password' );
 13. Go to your old social bookmarking site; export bookmarks in Delicious-compatible format.
-14. Import into SelfMarks.
-15. Enjoy SelfMarks thoroughly.
-16. Permit your most trusted acquaintances to also use your SelfMarks installation.  Or not.
+14. Import into Selfmarks.
+15. Enjoy Selfmarks thoroughly.
+16. Permit your most trusted acquaintances to also use your Selfmarks installation.  Or not.

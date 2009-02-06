@@ -1,6 +1,6 @@
 if( $( '#selfmarks-window' ).length == 0 ) {
     $( 'head' ).append(
-        '<link rel="stylesheet" href="#{SelfMarks::HOST}/uri/add_window.css" type="text/css" media="screen"/>'
+        '<link rel="stylesheet" href="#{Selfmarks::HOST}/uri/add_window.css" type="text/css" media="screen"/>'
     );
     var div = $( '#{@window_html}' );
     div.hide();
@@ -14,7 +14,7 @@ $( '#selfmarks-submit' ).live( 'click', function() {
     var tags = $( '#selfmarks-tags' ).val();
     var notes = $( '#selfmarks-notes' ).val();
     $.getJSON(
-        '#{SelfMarks::HOST}/uri/add_window_add?jsoncallback=?',
+        '#{Selfmarks::HOST}/uri/add_window_add?jsoncallback=?',
         {   uri   : uri,
             title : title,
             tags  : tags,

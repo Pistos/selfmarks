@@ -36,7 +36,7 @@ end
 require 'fastercsv'
 require 'm4dbi'
 require './config'
-$dbh = DBI.connect( "DBI:#{SelfMarks::DB_TYPE}:#{SelfMarks::DB_DATABASE}", SelfMarks::DB_USERNAME, SelfMarks::DB_PASSWORD )
+$dbh = DBI.connect( "DBI:#{Selfmarks::DB_TYPE}:#{Selfmarks::DB_DATABASE}", Selfmarks::DB_USERNAME, Selfmarks::DB_PASSWORD )
 require 'ramaze'
 require './models'
 

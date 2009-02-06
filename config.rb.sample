@@ -1,6 +1,6 @@
 # Copy this file to config.rb and then edit to taste.
 
-module SelfMarks
+module Selfmarks
   PORT = 8011
   HOST = "http://sm.purepistos.net"
   DB_TYPE = 'Pg'

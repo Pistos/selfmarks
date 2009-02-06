@@ -1,13 +1,7 @@
-<h3>Home</h3>
-
-<?r if logged_in? ?>
-
-<h4>Bookmarks (#{@count})</h4>
+<h4>You have #{@count} bookmarks.</h4>
 
 #{@pager.navigation if @pager.needed?}
 <?r @pager.each do |bm| ?>
   #{render_template( 'uri/partial.xhtml', :bookmark => bm )}
 <?r end ?>
 #{@pager.navigation if @pager.needed?}
-
-<?r end ?>

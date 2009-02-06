@@ -1,4 +1,4 @@
-<h4>You have #{@count} bookmarks.</h4>
+<h4>You have <span id="bookmark-count">#{@count}</span> bookmarks.</h4>
 
 #{@pager.navigation if @pager.needed?}
 <?r @pager.each do |bm| ?>

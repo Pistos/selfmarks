@@ -16,6 +16,8 @@ $( document ).ready( function() {
             function( json ) {
                 if( json.success ) {
                     link.closest( '.bookmark' ).slideUp();
+                    var c = parseInt( $( '#bookmark-count' ).text() );
+                    $( '#bookmark-count' ).text( c - 1 );
                 } else {
                     alert( 'Failed to delete bookmark!' );
                 }

@@ -1,3 +1,8 @@
 <h3>Bookmark a Page</h3>
 
 #{render_template( 'form.xhtml', :bookmark => @bookmark )}
+
+<p>
+See also #{A( 'your account page', :href => R( MainController, :account ) )}
+for better ways to add URIs: Ubiquity, or the bookmarklet.
+</p>

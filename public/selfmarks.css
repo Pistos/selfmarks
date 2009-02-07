@@ -102,6 +102,7 @@ td#page-search {
 }
 #page-search-button {
     display: none;
+    font-size: 12px;
 }
 td#page-search.focused #page-search-box {
     color: #000000;

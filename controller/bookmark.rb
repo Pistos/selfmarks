@@ -99,6 +99,7 @@ class BookmarkController < Ramaze::Controller
       user.bookmark_ensure( bm, title, notes )
       bm.set_title( user, title )
       bm.set_notes( user, notes )
+      bm.tags_delete_all( user )
       bm.tags_ensure( requested_tags, user )
       flash[ :success ] = "Updated #{bm.uri}."
     end

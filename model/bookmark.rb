@@ -81,6 +81,19 @@ class Bookmark < DBI::Model( :bookmarks )
     end
   end
 
+  def tags_delete_all( user )
+    $dbh.d(
+      %{
+        DELETE FROM users_bookmarks_tags
+        WHERE
+          user_id = ?
+          AND bookmark_id = ?
+      },
+      user.id,
+      self.id
+    )
+  end
+
   def notes( user )
     $dbh.sc(
       %{

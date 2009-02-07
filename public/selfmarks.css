@@ -65,35 +65,38 @@ a:active {
 }
 
 #logo-and-title {
-    background-image: url( '/selfmarks-logo-and-title.png' );
-    width: 278px;
-    height: 60px;
-    padding: 0px;
-    margin: 0px 0px 10px 0px;
+    background-image : url( '/selfmarks-logo-and-title.png' );
+    width            : 278px;
+    height           : 60px;
+    padding          : 0px;
+    margin           : 0px 0px 10px 0px;
 }
 
 #page-header {
-    font-size     : 14px;
-    width         : 100%;
-    border-top    : 1px solid #AAAAAA;
-    border-bottom : 1px solid #AAAAAA;
+    font-size       : 14px;
+    width           : 100%;
+    border-top      : 1px solid #AAAAAA;
+    border-bottom   : 1px solid #AAAAAA;
 }
 #page-header td {
-    vertical-align: top;
-    padding: 0.25em;
+    vertical-align : top;
+    padding        : 0.25em;
 }
 
 #menu-main {
     padding : 0px;
-    margin  : 0px 0px 1.5em 0px;
+    margin  : 0px;
 }
 
 #menu-main > * {
     margin-left: 1em;
 }
 
-td#page-search {
+#page-search {
     text-align: right;
+}
+#page-search form {
+    margin: 0px;
 }
 #page-search-box {
     font-size: 12px;

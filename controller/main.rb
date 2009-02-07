@@ -1,5 +1,8 @@
 class MainController < Ramaze::Controller
-  layout '/page' => [ :about, :account, :error, :export, :faq, :import, :index, :login, :openid, :logout ]
+  layout '/page' => [
+    :about, :account, :error, :export, :faq, :import, :index, :login, :logout,
+    :openid, :ubiquity
+  ]
   helper :identity, :paginate, :stack, :user
 
   trait :paginate => { :limit => 20, }

@@ -7,6 +7,9 @@ $( document ).ready( function() {
     } );
     $( '#page-search-box' ).blur( function() {
         $( '#page-search' ).removeClass( 'focused' );
+        if( $(this).val() == '' ) {
+            $(this).val( 'Search' );
+        }
     } );
 
     $( 'a.delete' ).click( function() {

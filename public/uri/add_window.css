@@ -13,3 +13,15 @@
 #selfmarks-window label {
     font-size: 12px;
 }
+
+#selfmarks-window table {
+    border: 0px;
+    border-collapse: collapse;
+}
+
+#selfmarks-window table td {
+    border: 0px;
+    border-collapse: collapse;
+    text-align: left;
+    vertical-align: middle;
+}

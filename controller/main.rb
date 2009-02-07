@@ -234,4 +234,10 @@ Do Not Edit! -->
 
     redirect Rs( :account )
   end
+
+  def page
+    if File.exist?( 'view/custom_footer.xhtml' )
+      @custom_footer = File.read( 'view/custom_footer.xhtml' )
+    end
+  end
 end

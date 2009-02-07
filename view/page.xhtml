@@ -23,7 +23,7 @@
     <td id="menu-main">
       #{A( 'Home', :href => R( MainController, :/ ) )}
       <?r if ! logged_in? ?>
-        #{A( 'Login', :href => R( MainController, :openid ) )}
+        #{A( 'Login', :href => R( MainController, Selfmarks::DEFAULT_LOGIN ) )}
         #{A( 'FAQ', :href => R( MainController, :faq ) )}
       <?r else ?>
         #{A( 'Bookmark', :href => R( BookmarkController, :add ) )}

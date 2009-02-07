@@ -8,7 +8,7 @@ class BookmarkController < Ramaze::Controller
 
   def add
     if ! logged_in?
-      call R( MainController, :login )
+      call R( MainController, Selfmarks::DEFAULT_LOGIN )
     end
 
     @bookmark = BookmarkStruct.new
@@ -85,7 +85,7 @@ class BookmarkController < Ramaze::Controller
 
   def edit( bookmark_id )
     if ! logged_in?
-      call R( MainController, :login )
+      call R( MainController, Selfmarks::DEFAULT_LOGIN )
     end
 
     bm = Bookmark[ bookmark_id.to_i ]
@@ -109,7 +109,7 @@ class BookmarkController < Ramaze::Controller
 
   def search( *tags )
     if ! logged_in?
-      call R( MainController, :login )
+      call R( MainController, Selfmarks::DEFAULT_LOGIN )
     end
 
     @bookmarks = Set.new
@@ -136,7 +136,7 @@ class BookmarkController < Ramaze::Controller
 
   def delete( bookmark_id )
     if ! logged_in?
-      call R( MainController, :login )
+      call R( MainController, Selfmarks::DEFAULT_LOGIN )
     end
 
     bm_id = bookmark_id.to_i

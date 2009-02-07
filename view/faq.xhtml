@@ -10,7 +10,7 @@ there is nothing to show a guest visiting the site.
 </p>
 
 <p>
-To see more, #{A( 'login or register', :href => Rs( :openid ) )}.
+To see more, #{A( 'login or register', :href => Rs( Selfmarks::DEFAULT_LOGIN ) )}.
 </p>
 
 <h3>How is this better than social bookmarking?</h3>
@@ -30,7 +30,7 @@ which generally translates into a faster user experience because:
 <p>
 If you have an
 <a href="http://openid.net/">OpenID</a>,
-#{A( 'use it', :href => Rs( :openid ) )} to automatically create an account
+#{A( 'use it', :href => Rs( Selfmarks::DEFAULT_LOGIN ) )} to automatically create an account
 (provided the site administrator has allowed automatic registrations).
 </p>
 

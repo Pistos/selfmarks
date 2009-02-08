@@ -15,7 +15,7 @@ Here's what you'll need:
 
 0. Point your domain to your server (DNS, yadda yadda).
 0. Get Ruby (and RubyGems) onto your server.
-1. gem install ramaze m4dbi dbd-pg json hpricot
+1. gem install ramaze m4dbi dbd-pg json hpricot ruby-openid
 2. Install and setup PostgreSQL.
 3. Install and setup Apache/nginx/whatever.
 4. git clone git://github.com/Pistos/selfmarks.git && cd selfmarks

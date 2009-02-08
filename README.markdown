@@ -24,13 +24,14 @@ Here's what you'll need:
 7. createuser the_db_username
 8. createdb the_db_name -O the_db_username
 9. cat sql/schema.sql | psql -U the_db_username the_db_name
-10. ruby start.rb
-11. Configure Apache/nginx to proxy your domain to the Ramaze app (http://wiki.ramaze.net/Deployment).
-12. Browse to http://yourdomain.com
-13. Login with OpenID, or
+10. cat sql/views.sql | psql -U the_db_username the_db_name
+11. ruby start.rb
+12. Configure Apache/nginx to proxy your domain to the Ramaze app (http://wiki.ramaze.net/Deployment).
+13. Browse to http://yourdomain.com
+14. Login with OpenID, or
       INSERT INTO users ( username, encrypted_password )
       VALUES ( 'some_username', 'some_SHA1ed_password' );
-14. Go to your old social bookmarking site; export bookmarks in Delicious-compatible format.
-15. Import into Selfmarks.
-16. Enjoy Selfmarks thoroughly.
-17. Permit your most trusted acquaintances to also use your Selfmarks installation.  Or not.
+15. Go to your old social bookmarking site; export bookmarks in Delicious-compatible format.
+16. Import into Selfmarks.
+17. Enjoy Selfmarks thoroughly.
+18. Permit your most trusted acquaintances to also use your Selfmarks installation.  Or not.

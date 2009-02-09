@@ -3,11 +3,16 @@
 module Selfmarks
   PORT = 8011
   HOST = "http://sm.purepistos.net"
-  DB_TYPE = 'Pg'
-  DB_DATABASE = 'selfmarks'
-  DB_USERNAME = 'selfmarks'
-  DB_PASSWORD = 'selfmarks'
+
   USE_MEMCACHED = false
   DEFAULT_LOGIN = :openid
   #DEFAULT_LOGIN = :login
+
+  DB_USERNAME = 'selfmarks'
+  DB_PASSWORD = 'selfmarks'
+
+  DB_TYPE = 'Pg'
+  DB_DATABASE = 'selfmarks'
+  # DB_TYPE = 'SQLite3'
+  # DB_DATABASE = 'selfmarks.db'
 end

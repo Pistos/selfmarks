@@ -5,11 +5,18 @@ Here's what you'll need:
 
   * A server
   * Ruby
-  * Gems: ramaze m4dbi dbd-pg json hpricot
-  * Apache or nginx or the like
+  * Gems: ramaze m4dbi json hpricot ruby-openid
+
+Your choice of either:
+
+  * PostgreSQL and dbd-pg gem (recommended)
+  * SQLite3 and dbd-sqlite3 gem
+
+Optional:
+
   * A domain or subdomain
-  * PostgreSQL
-  * memcached (optional)
+  * Apache or nginx or the like (needed for serving from port 80)
+  * memcached
 
 ### Steps
 
@@ -23,10 +30,11 @@ Here's what you'll need:
 6. ${EDITOR} config.rb
 7. createuser the_db_username
 8. createdb the_db_name -O the_db_username
-9. cat sql/schema.sql | psql -U the_db_username the_db_name
+9. cat sql/schema.sql | psql -U the_db_username the_db_name    # or sql/schema-sqlite.sql
 10. cat sql/views.sql | psql -U the_db_username the_db_name
 11. ruby start.rb
-12. Configure Apache/nginx to proxy your domain to the Ramaze app (http://wiki.ramaze.net/Deployment).
+12. (for port 80 servage) Configure Apache/nginx to proxy your domain to the
+    Ramaze app (http://wiki.ramaze.net/Deployment).
 13. Browse to http://yourdomain.com
 14. Login with OpenID, or
       INSERT INTO users ( username, encrypted_password )

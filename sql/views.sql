@@ -1,4 +1,4 @@
-CREATE OR REPLACE VIEW user_bookmarks AS
+CREATE VIEW user_bookmarks AS
 SELECT
     b.uri,
     ub.bookmark_id,

@@ -5,6 +5,13 @@ if( $( '#selfmarks-window' ).length == 0 ) {
     var div = $( '#{@window_html}' );
     div.hide();
     $( 'body' ).prepend( div );
+
+    var tags = $( "a[rel=tag]", document ).map(
+        function( idx, tag ) { return(tag.innerHTML); }
+    );
+    var tags_text = $.unique( tags ).join( ' ' );
+    $( '#selfmarks-tags' ).val( tags_text );
+
 }
 $( '#selfmarks-window' ).toggle( 'fast' );
 

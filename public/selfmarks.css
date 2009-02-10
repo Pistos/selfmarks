@@ -213,3 +213,7 @@ form.bookmark .submit {
     margin: 5em 0px 1em 0px;
     font-size: 10px;
 }
+
+table.form-layout {
+    border-spacing: 5px;
+}

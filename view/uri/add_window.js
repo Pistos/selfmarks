@@ -1,3 +1,14 @@
+function unique_strings( a ) {
+    var r = new Array();
+    o:for(var i = 0, n = a.length; i < n; i++) {
+        for(var x = 0, y = r.length; x < y; x++) {
+            if(r[x]==a[i]) continue o;
+        }
+        r[r.length] = a[i];
+    }
+    return r;
+}
+
 if( $( '#selfmarks-window' ).length == 0 ) {
     $( 'head' ).append(
         '<link rel="stylesheet" href="#{Selfmarks::HOST}/uri/add_window.css" type="text/css" media="screen"/>'
@@ -9,7 +20,7 @@ if( $( '#selfmarks-window' ).length == 0 ) {
     var tags = $( "a[rel=tag]", document ).map(
         function( idx, tag ) { return(tag.innerHTML); }
     );
-    var tags_text = $.unique( tags ).join( ' ' );
+    var tags_text = unique_strings( tags ).join( ' ' );
     $( '#selfmarks-tags' ).val( tags_text );
 
 }

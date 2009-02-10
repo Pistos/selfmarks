@@ -4,10 +4,6 @@ module Selfmarks
   PORT = 8011
   HOST = "http://sm.purepistos.net"
 
-  USE_MEMCACHED = false
-  DEFAULT_LOGIN = :openid
-  #DEFAULT_LOGIN = :login
-
   DB_USERNAME = 'selfmarks'
   DB_PASSWORD = 'selfmarks'
 
@@ -15,4 +11,11 @@ module Selfmarks
   DB_DATABASE = 'selfmarks'
   # DB_TYPE = 'SQLite3'
   # DB_DATABASE = 'selfmarks.db'
+
+  USE_MEMCACHED = false
+  DEFAULT_LOGIN = :openid
+  #DEFAULT_LOGIN = :login
+
+  HOPTOAD_API_KEY = nil
+  # HOPTOAD_API_KEY = 'abcdef0123456789'
 end

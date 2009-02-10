@@ -17,6 +17,7 @@ Optional:
   * A domain or subdomain
   * Apache or nginx or the like (needed for serving from port 80)
   * memcached
+  * gem install hoptoad-notifier-ramaze --source http://purepistos.net
 
 ### Steps
 

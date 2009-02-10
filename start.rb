@@ -15,4 +15,9 @@ if Selfmarks::USE_MEMCACHED
   Ramaze::Global.cache_alternative[ :sessions ] = Ramaze::MemcachedCache
 end
 
+if Selfmarks::HOPTOAD_API_KEY
+  require 'hoptoad-notifier'
+  Ramaze::Helper::HoptoadNotifier.trait[ :api_key ] = Selfmarks::HOPTOAD_API_KEY
+end
+
 Ramaze.start :port => Selfmarks::PORT, :adapter => :mongrel

@@ -35,7 +35,7 @@ CmdUtils.CreateCommand({
     var tags = mods.tagged.text
 
     if( ! tags ){
-      tags = jQuery( "a[@rel=tag]", doc ).map(
+      tags = jQuery( "a[rel=tag]", doc ).map(
         function( idx, tag ) { return(tag.innerHTML); } );
       tags = this.unique_tags( tags ).join( ' ' );
     }

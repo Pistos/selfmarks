@@ -30,16 +30,36 @@ CmdUtils.CreateCommand({
   },
 
   post_params: function(note, mods){
-    var doc =  Application.activeWindow.activeTab.document;
-    var uri = Utils.url(doc.documentURI);
+    var doc  = Application.activeWindow.activeTab.document;
+    var uri  = Utils.url(doc.documentURI);
+    var tags = mods.tagged.text
+
+    if( ! tags ){
+      tags = jQuery( "a[@rel=tag]", doc ).map(
+        function( idx, tag ) { return(tag.innerHTML); } );
+      tags = this.unique_tags( tags ).join( ' ' );
+    }
+
+    CmdUtils.log( tags );
 
     var params = {
-      uri: uri.asciiSpec,
-      title: mods.titled.text || doc.title,
-      notes: note.text,
-      tags: mods.tagged.text
+      uri   : uri.asciiSpec,
+      title : mods.titled.text || doc.title,
+      notes : note.text,
+      tags  : tags
     };
 
-    return params;
+     return params;
+  },
+
+  unique_tags: function(a){
+    var r = new Array();
+    o:for(var i = 0, n = a.length; i < n; i++) {
+      for(var x = 0, y = r.length; x < y; x++) {
+        if(r[x]==a[i]) continue o;
+      }
+      r[r.length] = a[i];
+    }
+    return r;
   }
 });

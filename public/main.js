@@ -30,4 +30,8 @@ $( document ).ready( function() {
 
     $( '.flash' ).hide();
     $( '.flash' ).fadeIn( 2000 );
+
+    if( jQuery.browser.opera ) {
+        $( '.for-opera' ).show();
+    }
 } );

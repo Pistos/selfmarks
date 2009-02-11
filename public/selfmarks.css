@@ -217,3 +217,11 @@ form.bookmark .submit {
 table.form-layout {
     border-spacing: 5px;
 }
+
+.for-opera {
+    display: none;
+    padding-left: 65px;
+    background-image: url( '/images/opera-logo.png' );
+    background-position: left;
+    background-repeat: no-repeat;
+}

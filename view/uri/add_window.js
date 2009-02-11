@@ -17,12 +17,13 @@ if( $( '#selfmarks-window' ).length == 0 ) {
     div.hide();
     $( 'body' ).prepend( div );
 
-    var tags = $( "a[rel=tag]", document ).map(
-        function( idx, tag ) { return(tag.innerHTML); }
-    );
-    var tags_text = unique_strings( tags ).join( ' ' );
-    $( '#selfmarks-tags' ).val( tags_text );
-
+    if( $( '#selfmarks-tags' ).val() == '' ) {
+        var tags = $( "a[rel=tag]", document ).map(
+            function( idx, tag ) { return(tag.innerHTML); }
+        );
+        var tags_text = unique_strings( tags ).join( ' ' );
+        $( '#selfmarks-tags' ).val( tags_text );
+    }
 }
 $( '#selfmarks-window' ).toggle( 'fast' );
 

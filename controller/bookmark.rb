@@ -72,10 +72,16 @@ class BookmarkController < Ramaze::Controller
     if ! logged_in?
       @window_html = render_template( 'add_window_login.xhtml' ).gsub( /\s+/, ' ' ).strip
     else
-      @bookmark = BookmarkStruct.new
-      @bookmark.uri = h( request[ 'uri' ] )
-      @bookmark.uri_editable = true
-      @bookmark.title = h( request[ 'title' ] )
+      uri = h( request[ 'uri' ] )
+      bm = UserBookmark[ :uri => uri, :user_id => user.id ]
+      if bm
+        @bookmark = bm.to_struct( user )
+      else
+        @bookmark = BookmarkStruct.new
+        @bookmark.uri = uri
+        @bookmark.uri_editable = true
+        @bookmark.title = h( request[ 'title' ] )
+      end
 
       @window_html = render_template( 'add_window.xhtml' ).gsub( /\s+/, ' ' ).strip
     end

@@ -24,8 +24,14 @@ if( $( '#selfmarks-window' ).length == 0 ) {
         var tags_text = unique_strings( tags ).join( ' ' );
         $( '#selfmarks-tags' ).val( tags_text );
     }
+    $( '#selfmarks-window' ).toggle( 'fast' );
+} else {
+    $( '#selfmarks-window' ).toggle(
+        'fast',
+        function() {
+            $( '#selfmarks-window' ).remove();
+        } );
 }
-$( '#selfmarks-window' ).toggle( 'fast' );
 
 $( '#selfmarks-submit' ).live( 'click', function() {
     var uri = $( '#selfmarks-uri' ).val();

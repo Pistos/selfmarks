@@ -86,7 +86,7 @@ class BookmarkController < Ramaze::Controller
       @window_html = render_template( 'add_window.xhtml' ).gsub( /\s+/, ' ' ).strip
     end
 
-    response[ 'Cache-Control' ] = 'no-cache'
+    response[ 'Cache-Control' ] = 'no-store'
     response[ 'ETag' ] = Digest::SHA1.hexdigest( @window_html )
     render_template 'add_window.js'
   end

@@ -3,6 +3,10 @@ function load_js( uri, id ) {
     if( script_tag ) {
         script_tag.parentNode.removeChild( script_tag );
     }
+
+    /* To force browser cache update */
+    $.get( uri );
+
     var script  = document.createElement( 'SCRIPT' );
     script.type = 'text/javascript';
     script.src  = uri;

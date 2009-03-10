@@ -4,8 +4,10 @@ function load_js( uri, id ) {
         script_tag.parentNode.removeChild( script_tag );
     }
 
-    /* To force browser cache update */
-    $.get( uri );
+    if( typeof( jQuery ) != 'undefined' ) {
+        /* To force browser cache update */
+        jQuery.get( uri );
+    }
 
     var script  = document.createElement( 'SCRIPT' );
     script.type = 'text/javascript';

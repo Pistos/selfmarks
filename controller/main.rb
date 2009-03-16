@@ -235,6 +235,12 @@ Do Not Edit! -->
     redirect Rs( :account )
   end
 
+  def generate_api_key
+    redirect_referrer  if ! logged_in?
+    user.api_key = Digest::SHA1.hexdigest( Selfmarks::API_KEY_SALT + Time.now.to_s )
+    redirect Rs( :account )
+  end
+
   def page
     if File.exist?( 'view/custom_footer.xhtml' )
       @custom_footer = File.read( 'view/custom_footer.xhtml' )

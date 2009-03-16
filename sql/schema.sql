@@ -6,6 +6,7 @@ CREATE TABLE users (
     openid             VARCHAR( 1024 ) UNIQUE,
     import_total       INTEGER,
     import_done        INTEGER,
+    api_key            VARCHAR( 64 )   UNIQUE,
     CONSTRAINT identifiable CHECK (
         (
             username IS NOT NULL
@@ -42,4 +43,3 @@ CREATE TABLE users_bookmarks_tags (
     tag_id       INTEGER         NOT NULL REFERENCES tags( id ),
     UNIQUE( user_id, bookmark_id, tag_id )
 );
-

@@ -40,3 +40,19 @@ to search Selfmarks.
 </table>
 
 </form>
+
+<h4>API</h4>
+
+<p>
+Your API key is: <b>#{user.api_key || '(not yet generated)'}</b>
+</p>
+
+<p>
+Keep your API key safe and secure!  It is as good as your username and password
+in authenticating with Selfmarks.  You may regenerate your API key at any time,
+and the old key will be discarded (lost forever).  Regenerating your API key
+will of course break any existing applications that rely on it; these would
+have to be updated with the new key.
+</p>
+
+#{A( 'Generate API Key', :href => Rs( :generate_api_key ) )}

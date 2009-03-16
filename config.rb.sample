@@ -16,6 +16,8 @@ module Selfmarks
   DEFAULT_LOGIN = :openid
   #DEFAULT_LOGIN = :login
 
+  API_KEY_SALT = 'some random string'
+
   HOPTOAD_API_KEY = nil
   # HOPTOAD_API_KEY = 'abcdef0123456789'
 end

@@ -6,6 +6,7 @@ CREATE TABLE users (
     openid             VARCHAR( 1024 ) UNIQUE,
     import_total       INTEGER,
     import_done        INTEGER,
+    api_key            VARCHAR( 64 )   UNIQUE,
     CONSTRAINT identifiable CHECK (
         (
             username IS NOT NULL

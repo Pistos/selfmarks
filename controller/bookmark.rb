@@ -13,7 +13,7 @@ class BookmarkController < Ramaze::Controller
 
     @bookmark = BookmarkStruct.new
     @bookmark.uri_editable = true
-    if request.post? or request[ 'jsoncallback' ]
+    if request.post? || request[ 'jsoncallback' ]
       begin
         add_( request )
         redirect R( MainController, :/ )
@@ -38,6 +38,9 @@ class BookmarkController < Ramaze::Controller
   end
 
   def add_window_add
+    if ! logged_in?
+      user_login :api_key => request[ :api_key ]
+    end
     if ! logged_in?
       json = { 'error' => 'Not logged in.' }.to_json
     else

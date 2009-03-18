@@ -5,9 +5,11 @@ class User < DBI::Model( :users )
   def self.authenticate( credentials )
     return nil  if credentials.nil? || credentials.empty?
 
-    if credentials[ :openid ]
+    if credentials[ :api_key ]
+      User[ :api_key => credentials[ :api_key ] ]
+    elsif credentials[ :openid ]
       User[ :openid => credentials[ :openid ] ]
-    else
+    elsif credentials[ :password ]
       encrypted_password = Digest::SHA1.hexdigest( credentials[ :password ] )
       User[
         :username => credentials[ :username ],

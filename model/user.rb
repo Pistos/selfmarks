@@ -30,13 +30,13 @@ class User < DBI::Model( :users )
         INSERT INTO users_bookmarks (
           user_id, bookmark_id, title, notes#{time_created ? ', time_created' : ''}
         ) SELECT
-          ?, ?, ?, ?#{time_created ? ', ?' : ''}
+          ?::INTEGER, ?::INTEGER, ?::VARCHAR, ?::VARCHAR#{time_created ? ', ?::TIMESTAMP' : ''}
         WHERE NOT EXISTS(
           SELECT 1
           FROM users_bookmarks
           WHERE
-            user_id = ?
-            AND bookmark_id = ?
+            user_id = ?::INTEGER
+            AND bookmark_id = ?::INTEGER
           LIMIT 1
         )
       },

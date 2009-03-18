@@ -48,7 +48,7 @@ end
 
 op.parse!
 
-options[ 'api_key' ] ||= File.open( key_file ) { |io| io.gets.strip }
+options[ 'api_key' ] ||= File.read( key_file )
 options[ 'uri' ] ||= ARGV.shift
 
 if ! options[ 'uri' ]

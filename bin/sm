@@ -55,7 +55,9 @@ end
 
 op.parse!
 
-options[ 'api_key' ] ||= File.read( key_file, 40 )
+if File.exist?( key_file )
+  options[ 'api_key' ] ||= File.read( key_file, 40 )
+end
 options[ 'uri' ] ||= ARGV.shift
 
 if ! options[ 'uri' ]

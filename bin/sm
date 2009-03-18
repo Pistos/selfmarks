@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Small CLI tool to make adding selfmarks easier.
+# Small CLI tool to make adding Selfmarks easier.
 # Original script by manveru - http://gist.github.com/80970
 #
 # Obtain your API key from your Account page ( e.g. http://sm.purepistos.net/account )
@@ -11,37 +11,44 @@ options = { 'host' => 'http://sm.purepistos.net/uri/add_window_add' }
 key_file = File.expand_path( "~/.config/sm.key" )
 
 op = OptionParser.new { |o|
-  o.on( '-u', '--uri STRING', 'URI of the page you want to selfmark' ) { |uri|
+  o.on( '-u', '--uri STRING', 'URI of the page you want to Selfmark' ) { |uri|
     options[ 'uri' ] = uri }
-  o.on( '-u', '--url STRING', 'URL of the page you want to selfmark' ) { |url|
+  o.on( '-u', '--url STRING', 'URL of the page you want to Selfmark' ) { |url|
     options[ 'uri' ] = url }
   o.on( '-m', '--title STRING', 'Page title (automatic if Hpricot available)' ) { |title|
     options[ 'title' ] = title }
   o.on( '-n', '--note STRING', 'Notes to yourself about the page' ) { |note|
     options[ 'notes' ] = note }
-  o.on( '-t', '--tags tag1,tag2,tag3', Array, 'Tags associated with the page' ) { |tags|
+  o.on( '-t', '--tags tag1,tag2,tag3', Array, 'Tags associated with the page.  Can be space- or comma-separated' ) { |tags|
     options[ 'tags' ] = tags }
 
   o.separator ' '
 
   o.on( '-k', '--key', "API key, else fallback to --file-key" ) { |key|
     options[ 'api_key' ] = key }
-  o.on( '-f', '--key-file', "Use contents of #{key_file} as API key" ) { |file|
+  o.on( '-f', '--key-file', "Use contents of a file other than #{key_file} as API key" ) { |file|
     key_file = file }
-  o.on( '-H', '--host', 'URI of the uri/add_window_add of your selfmarks' ) { |host|
+  o.on( '-H', '--host', 'URI of the uri/add_window_add of your Selfmarks' ) { |host|
     options[ 'host' ] = host }
   o.on( '-q', '--quiet', "Only inform about errors" ) {
     options[ 'quiet' ] = true }
 
   o.separator ' '
 
-  o.on( '-h', '--help', 'Display this list' ) {
-    puts o; exit }
-  o.on( '-v', '--version', "I'll tell you my version" ) {
-    puts 'sm 2009.03.19 (Original: 2009.03.18 (c) manveru)'; exit }
+  o.on( '-h', '--help', 'Display this help' ) {
+    puts "http://sm.purepistos.net\n\n"
+    puts o
+    exit
+  }
+  o.on( '-v', '--version', "Display version" ) {
+    puts "http://sm.purepistos.net"
+    puts 'sm 2009.03.19 (Original: 2009.03.18 (c) manveru)'
+    exit
+  }
 }
 
 if ARGV.empty?
+  puts "http://sm.purepistos.net\n\n"
   puts op
   exit 1
 end

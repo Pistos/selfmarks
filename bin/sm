@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+# Small CLI tool to make adding selfmarks easier.
+#
+# @see http://sm.purepistos.net
+
+options = {'host' => 'http://sm.purepistos.net/uri/add_window_add'}
+key_file = File.expand_path("~/.config/sm.key")
+
+require 'optparse'
+
+op = OptionParser.new{|o|
+  o.on('-u', '--url STRING', 'URL of the page you want to selfmark'
+      ){|url| options['uri'] = url }
+  o.on('-m', '--title STRING', 'Page title (automatic if Hpricot available)'
+      ){|title| options['title'] = title }
+  o.on('-n', '--note STRING', 'Notes to yourself about the page'
+      ){|note| options['notes'] = note }
+  o.on('-t', '--tags tag1,tag2,tag3', Array, 'Tags associated with the page'
+      ){|tags| options['tags'] = tags }
+
+  o.separator ' '
+
+  o.on('-k', '--key', "API key, else fallback to --file-key"
+      ){|key| options['api_key'] = key }
+  o.on('-f', '--key-file', "Use contents of #{key_file} as API key"
+      ){|file| key_file = file }
+  o.on('-H', '--host', 'URL of the uri/add_window_add of your selfmarks'
+      ){|host| options['host'] = host }
+  o.on('-q', '--quiet', "Only inform about errors"
+      ){ options['quiet'] = true }
+
+  o.separator ' '
+
+  o.on('-h', '--help', 'Display this list'
+      ){ puts o; exit }
+  o.on('-v', '--version', "I'll tell you my version"
+      ){ puts 'sm 2009.03.18 (c) manveru'; exit }
+}
+
+if ARGV.empty?; puts op; exit 1; end
+op.parse!
+
+options['api_key'] ||= File.open(key_file){|io| io.gets.strip }
+options['uri'] ||= ARGV.shift
+
+fail "No url given" unless options['uri']
+fail "No API key found" unless options['api_key']
+
+begin # try to get the title of the page via hpricot
+  require 'hpricot'
+  require 'open-uri'
+
+  options['title'] = Hpricot(open(options['uri'])).at(:title).inner_text.strip
+rescue LoadError
+  fail "Please supply a title or install hpricot"
+end unless options['title']
+
+host = URI(options.delete('host'))
+options['tags'] = [*options['tags']].join(',')
+
+response = Net::HTTP.post_form(host, options)
+
+message = response.body.tr('{()}"', ' ').strip
+fail(message) if message =~ /^error/
+puts message unless options['quiet']
